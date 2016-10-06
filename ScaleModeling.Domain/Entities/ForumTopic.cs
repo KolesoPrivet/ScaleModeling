@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 using ScaleModeling.Domain.Abstract;
 
@@ -9,8 +10,11 @@ namespace ScaleModeling.Domain.Entities
     {
         public int Id { get; set; }
 
+        [Required( ErrorMessage = "Необходимо ввести заголовок темы" )]
+        [StringLength( 100, MinimumLength = 10, ErrorMessage = "Количество символов заголовка должно быть в диапазоне от 10 до 100" )]
         public string Title { get; set; }
 
+        [Required( ErrorMessage = "Необходимо ввести описание темы" )]
         public string Text { get; set; }
 
         public int Viewed { get; set; }

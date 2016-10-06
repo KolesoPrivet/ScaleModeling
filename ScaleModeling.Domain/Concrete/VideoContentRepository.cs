@@ -5,7 +5,7 @@ using ScaleModeling.Domain.Entities;
 
 namespace ScaleModeling.Domain.Concrete
 {
-    class VideoContentRepository : IRepository<VideoContent>
+    public class VideoContentRepository : IRepository<VideoContent>
     {
         private EntityFrameworkDBContext context = new EntityFrameworkDBContext();
 

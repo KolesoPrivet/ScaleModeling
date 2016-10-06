@@ -5,7 +5,7 @@ using ScaleModeling.Domain.Entities;
 
 namespace ScaleModeling.Domain.Concrete
 {
-    class ForumCategoryRepository : IRepository<ForumCategory>
+    public class ForumCategoryRepository : IRepository<ForumCategory>
     {
         private EntityFrameworkDBContext context = new EntityFrameworkDBContext();
 

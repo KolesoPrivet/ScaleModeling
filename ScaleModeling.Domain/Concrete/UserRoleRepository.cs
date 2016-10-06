@@ -5,7 +5,7 @@ using ScaleModeling.Domain.Entities;
 
 namespace ScaleModeling.Domain.Concrete
 {
-    class UserRoleRepository : IRepository<UserRole>
+    public class UserRoleRepository : IRepository<UserRole>
     {
         private EntityFrameworkDBContext context = new EntityFrameworkDBContext();
 

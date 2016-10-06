@@ -5,7 +5,7 @@ using ScaleModeling.Domain.Entities;
 
 namespace ScaleModeling.Domain.Concrete
 {
-    class ArticleCommentRepository : IRepository<ArticleComment>
+    public class ArticleCommentRepository : IRepository<ArticleComment>
     {
         private EntityFrameworkDBContext context = new EntityFrameworkDBContext();
 

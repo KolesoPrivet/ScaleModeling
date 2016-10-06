@@ -1,6 +1,6 @@
-﻿@using ScaleModeling.Domain.Entities
+﻿@using ScaleModeling.WebUI.Models
 
-@model List<Article>
+@model HomeViewModel
 
 @{
 	ViewBag.Title = "Главная";
@@ -62,21 +62,20 @@
 
 <div class="container-fluid">
 	<div class="row">
-
 		<div class="col-md-5 col-md-offset-1">
 			<h3>Новые статьи</h3>
-			@foreach (var article in Model)
+			@foreach (var article in Model.Articles)
 			{
 				<div class="row well">
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-12">
-								<p>@article.Description</p>
+								<p>@article.Description ...</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<span class="pull-left label label-primary">@article.CreationDate</span>
+								<span class="pull-left label label-primary">@article.CreationDate.ToString().Substring( 0, 10 )</span>
 							</div>
 						</div>
 						<div class="row">
@@ -93,118 +92,53 @@
 		</div>
 		<div class="col-md-5 col-md-offset-1">
 			<h3>Новые темы</h3>
-			<div class="row well">
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-12">
-							<p>Описание  это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.</p>
+			@foreach (var topic in Model.Topics)
+			{
+				<div class="row well">
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-12">
+								<p>@topic.Text</p>
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<span class="pull-left label label-primary">30.05.1993</span>
+						<div class="row">
+							<div class="col-md-12">
+								<span class="pull-left label label-primary">@topic.CreationDate.ToString().Substring( 0, 10 )</span>
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<span class="pull-left">Название статьи</span>
-						</div>
-						<div class="col-md-6">
-							<span class="pull-right">Автор</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row well">
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-12">
-							<p>Описание  это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<span class="pull-left label label-primary">30.05.1993</span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<span class="pull-left">Название статьи</span>
-						</div>
-						<div class="col-md-6">
-							<span class="pull-right">Автор</span>
+						<div class="row">
+							<div class="col-md-6">
+								<span class="pull-left">@topic.Title</span>
+							</div>
+							<div class="col-md-6">
+								<span class="pull-right">@topic.Author.Login</span>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row well">
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-12">
-							<p>Описание  это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<span class="pull-left label label-primary">30.05.1993</span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<span class="pull-left">Название статьи</span>
-						</div>
-						<div class="col-md-6">
-							<span class="pull-right">Автор</span>
-						</div>
-					</div>
-				</div>
-			</div>
+			}
 		</div>
 
 	</div>
 	<div class="row">
-
 		<div class="col-md-5 col-md-offset-1">
 			<h3>Новые события</h3>
+			@foreach (var ev in Model.Events)
+			{
 			<div class="row well">
 				<div class="col-md-12">
 					<div class="row">
 						<div class="col-md-2">
-							<p>Событие</p>
+							<p>@ev.Title</p>
 						</div>
 						<div class="col-md-10">
-							<p>Описание  это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.</p>
+							<p>@ev.Description ...</p>
 						</div>
 						<span class="pull-right label label-primary">Подробнее...</span>
 					</div>
 				</div>
 			</div>
-			<div class="row well">
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-2">
-							<p>Событие</p>
-						</div>
-						<div class="col-md-10">
-							<p>Описание  это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.</p>
-						</div>
-						<span class="pull-right label label-primary">Подробнее...</span>
-					</div>
-				</div>
-			</div>
-			<div class="row well">
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-2">
-							<p>Событие</p>
-						</div>
-						<div class="col-md-10">
-							<p>Описание  это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.</p>
-						</div>
-						<span class="pull-right label label-primary">Подробнее...</span>
-					</div>
-				</div>
-			</div>
+			}
 		</div>
 
 		<div class="col-md-5 col-md-offset-1">

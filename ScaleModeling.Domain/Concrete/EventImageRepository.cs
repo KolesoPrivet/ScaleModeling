@@ -5,7 +5,7 @@ using ScaleModeling.Domain.Entities;
 
 namespace ScaleModeling.Domain.Concrete
 {
-    class EventImageRepository : IRepository<EventImage>
+    public class EventImageRepository : IRepository<EventImage>
     {
         private EntityFrameworkDBContext context = new EntityFrameworkDBContext();
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-
-using ScaleModeling.Domain.Abstract;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
+using ScaleModeling.Domain.Abstract;
 
 namespace ScaleModeling.Domain.Entities
 {
@@ -13,10 +13,14 @@ namespace ScaleModeling.Domain.Entities
         [ForeignKey("UserDetail")]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Необходимо ввести логин")]
+        [StringLength(20, MinimumLength = 3, ErrorMessage = "Количество символов логина должно быть в диапазоне от 3 до 20")]
         public string Login { get; set; }
 
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Необходимо ввести электронную почту")]
+        [DataType( DataType.EmailAddress )]
         public string Email { get; set; }
 
         public DateTime LastLogin { get; set; }
