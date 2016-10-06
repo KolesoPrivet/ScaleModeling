@@ -22,3 +22,10 @@ C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleMod
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\ru\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\ru\System.Web.WebPages.Razor.resources.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\obj\Debug\ScaleModeling.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\ScaleModeling.Domain.dll.config
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\EntityFramework.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\EntityFramework.xml
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

@@ -38,3 +38,6 @@ C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleMod
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Tests\bin\Debug\ru\System.Web.WebPages.resources.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Tests\bin\Debug\ru\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Tests\bin\Debug\ru\System.Web.WebPages.Razor.resources.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Tests\bin\Debug\EntityFramework.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Tests\bin\Debug\EntityFramework.xml
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Tests\bin\Debug\ru\EntityFramework.resources.dll

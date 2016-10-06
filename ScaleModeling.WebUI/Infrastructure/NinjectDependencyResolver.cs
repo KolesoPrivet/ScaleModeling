@@ -1,8 +1,9 @@
 ﻿using Ninject;
+using ScaleModeling.Domain.Abstract;
+using ScaleModeling.Domain.Entities;
+using ScaleModeling.Domain.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ScaleModeling.WebUI.Infrastructure
@@ -27,9 +28,11 @@ namespace ScaleModeling.WebUI.Infrastructure
             return kernel.GetAll( serviceType );
         }
 
+
         private void AddBindings()
         {
-
+            kernel.Bind<IRepository<Event>>().To<EventRepository>();
+            kernel.Bind<IRepository<Article>>().To<ArticleRepository>();
         }
     }
 }
