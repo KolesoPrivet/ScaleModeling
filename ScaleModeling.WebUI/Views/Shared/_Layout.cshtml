@@ -11,29 +11,32 @@
 	<meta name="description" content="Сайт для любителей стендового моделизма" />
 </head>
 <body>
-	<div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
-		<a class="navmenu-brand visible-md visible-lg text-center" href="#">Лого</a>
-		<ul class="nav navmenu-nav">
-			@RenderSection("Links")
-		</ul>
-	</div>
-	<header class="navmenu-default navmenu-fixed-top page-header text">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-5 col-md-offset-1">
-					<h2>@ViewBag.Title</h2>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
+				<a class="navmenu-brand visible-md visible-lg text-center" href="#">Лого</a>
+				<ul class="nav navmenu-nav">
+					@RenderSection( "Links" )
+				</ul>
+			</div>
+			<header class="navmenu-default navmenu-fixed-top page-header text">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-5 col-md-offset-1">
+							<h2>@ViewBag.Title</h2>
+						</div>
+						<div class="col-md-1 col-md-offset-3">
+							<h4>Kolesoprivet</h4>
+							<span>Профиль</span>
+						</div>
+					</div>
 				</div>
-				<div class="col-md-1 col-md-offset-3">
-					<h4>Kolesoprivet</h4>
-					<span>Профиль</span>
-				</div>
+			</header>
+			<div class="container-fluid">
+				@RenderBody()
 			</div>
 		</div>
-	</header>
-	<div class="container">
-		@RenderBody()
 	</div>
-
 	@Scripts.Render( "~/bundles/jquery" )
 	@Scripts.Render( "~/bundles/bootstrap" )
 	@Scripts.Render( "~/bundles/main" )

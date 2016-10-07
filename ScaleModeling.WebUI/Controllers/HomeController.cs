@@ -12,13 +12,15 @@ namespace ScaleModeling.WebUI.Controllers
         private IRepository<Article> articleRepository;
         private IRepository<Event> eventRepository;
         private IRepository<ForumTopic> topicRepository;
+        private IRepository<Product> productRepository;
 
         public HomeController(IRepository<Article> articleRepositoryParam, IRepository<Event> eventRepositoryParam,
-                              IRepository<ForumTopic> topicRepositoryParam)
+                              IRepository<ForumTopic> topicRepositoryParam, IRepository<Product> productRepositoryParam)
         {
             this.articleRepository = articleRepositoryParam;
             this.eventRepository = eventRepositoryParam;
             this.topicRepository = topicRepositoryParam;
+            this.productRepository = productRepositoryParam;
         }
 
         public ActionResult Index()
@@ -27,7 +29,8 @@ namespace ScaleModeling.WebUI.Controllers
             {
                 Articles = articleRepository.Get.OrderByDescending( a => a.CreationDate ).Take( 3 ).ToList(),
                 Events = eventRepository.Get.OrderByDescending( e => e.CreationDate ).Take( 3 ).ToList(),
-                Topics = topicRepository.Get.OrderByDescending(t => t.CreationDate).Take(3).ToList()
+                Topics = topicRepository.Get.OrderByDescending(t => t.CreationDate).Take(3).ToList(),
+                Products = productRepository.Get.OrderByDescending(p => p.AdditionDate).Take(3).ToList()
             };
 
             return View( homeViewModel );

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using ScaleModeling.Domain.Abstract;
+using System;
 
 namespace ScaleModeling.Domain.Entities
 {
@@ -17,6 +18,8 @@ namespace ScaleModeling.Domain.Entities
         public int Rating { get; set; }
 
         public int ProductCount { get; set; }
+
+        public DateTime AdditionDate { get; set; }
 
         public int CategoryId { get; set; }
         public virtual ProductCategory Category { get; set; }
