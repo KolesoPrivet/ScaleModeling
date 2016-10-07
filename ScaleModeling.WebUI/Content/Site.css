@@ -1,9 +1,9 @@
-﻿body{
-    max-width:1550px;
+﻿body {
+    max-width: 1550px;
 }
 
-a{
-    outline:none !important;
+a {
+    outline: none !important;
 }
 
 /* NAVIGATION MENU */
@@ -37,6 +37,11 @@ li div a {
 }
 
     li div a:hover {
+        text-decoration: none;
+        color: #808080;
+    }
+
+    li div a:focus {
         text-decoration: none;
         color: #808080;
     }

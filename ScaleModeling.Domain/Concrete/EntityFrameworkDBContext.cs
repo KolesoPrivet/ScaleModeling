@@ -13,6 +13,7 @@ namespace ScaleModeling.Domain.Concrete
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<UserNotification> UserNotifications { get; set; }
 
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<ArticleComment> ArticleComments { get; set; }
@@ -33,5 +34,14 @@ namespace ScaleModeling.Domain.Concrete
         public virtual DbSet<ForumCategory> ForumCategories { get; set; }
         public virtual DbSet<ForumComment> ForumComments { get; set; }
         public virtual DbSet<ForumImage> ForumImages { get; set; }
+
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategories { get; set; }
+        public virtual DbSet<ProductComment> ProductComments { get; set; }
+        public virtual DbSet<ProductImage> ProductImages { get; set; }
+
+        public virtual DbSet<WishList> WishLists { get; set; }
+
+        public virtual DbSet<Order> Orders { get; set; }
     }
 }

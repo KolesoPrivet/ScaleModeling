@@ -28,6 +28,7 @@ namespace ScaleModeling.Domain.Entities
         public int RoleId { get; set; }
         public virtual UserRole Role { get; set; }
         public virtual UserDetail UserDetail { get; set; }
+        public virtual List<UserNotification> UserNotifications { get; set; }
 
         public virtual List<Article> Articles { get; set; }
         public virtual List<ArticleComment> ArticleComments { get; set; }
@@ -43,5 +44,11 @@ namespace ScaleModeling.Domain.Entities
 
         public virtual List<ForumTopic> ForumTopics { get; set; }
         public virtual List<ForumComment> ForumComments { get; set; }
+
+        public virtual List<Order> Orders { get; set; }
+
+        public virtual List<ProductComment> ProductComments { get; set; }
+
+        public virtual List<WishList> WishLists { get; set; }
     }
 }

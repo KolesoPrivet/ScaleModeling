@@ -69,6 +69,10 @@ namespace ScaleModeling.WebUI.Infrastructure
 
             kernel.Bind<IRepository<UserRole>>().To<UserRoleRepository>();
 
+            kernel.Bind<IRepository<UserNotification>>().To<UserNotificationRepository>();
+
+            kernel.Bind<IRepository<WishList>>().To<WishListRepository>();
+
 
             //Forum
             kernel.Bind<IRepository<ForumCategory>>().To<ForumCategoryRepository>();
@@ -78,6 +82,16 @@ namespace ScaleModeling.WebUI.Infrastructure
             kernel.Bind<IRepository<ForumImage>>().To<ForumImageRepository>();
 
             kernel.Bind<IRepository<ForumComment>>().To<ForumCommentRepository>();
+
+
+            //Products
+            kernel.Bind<IRepository<Product>>().To<ProductRepository>();
+
+            kernel.Bind<IRepository<ProductCategory>>().To<ProductCategoryRepository>();
+
+            kernel.Bind<IRepository<ProductComment>>().To<ProductCommentRepository>();
+
+            kernel.Bind<IRepository<ProductImage>>().To<ProductImageRepository>();
         }
     }
 }
