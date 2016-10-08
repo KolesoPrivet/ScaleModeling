@@ -7,39 +7,46 @@
 	<title>@ViewBag.Title</title>
 	@Styles.Render( "~/Content/css" )
 	@Scripts.Render( "~/bundles/modernizr" )
+	@Scripts.Render( "~/bundles/main" )
 
 	<meta name="description" content="Сайт для любителей стендового моделизма" />
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
-				<a class="navmenu-brand visible-md visible-lg text-center" href="#">Лого</a>
-				<ul class="nav navmenu-nav">
-					@RenderSection( "Links" )
+		<div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
+			<a class="navmenu-brand visible-md visible-lg text-center" href="@Url.Action("Index","Home")">Лого</a>
+			<ul class="nav navmenu-nav">
+				@RenderSection( "Links" )
+			</ul>
+		</div>
+		<header class="navmenu-default navmenu-fixed-top page-header text">
+			<div class="header-content">
+				<span id="header-title" class="pull-left">@ViewBag.Title</span>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="text-center">
+						<p>Kolesoprivet</p>
+					</li>
+					<li class="text-center">
+						<span>Профиль</span>
+					</li>
 				</ul>
 			</div>
-			<header class="navmenu-default navmenu-fixed-top page-header text">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-5 col-md-offset-1">
-							<h2>@ViewBag.Title</h2>
-						</div>
-						<div class="col-md-1 col-md-offset-3">
-							<h4>Kolesoprivet</h4>
-							<span>Профиль</span>
-						</div>
-					</div>
-				</div>
-			</header>
-			<div class="container-fluid">
-				@RenderBody()
-			</div>
-		</div>
+		</header>
+		@RenderBody()
+		<footer class="panel-footer">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="text-center">
+					<p>Kolesoprivet</p>
+				</li>
+				<li class="text-center">
+					<span>Профиль</span>
+				</li>
+			</ul>
+		</footer>
 	</div>
+
 	@Scripts.Render( "~/bundles/jquery" )
 	@Scripts.Render( "~/bundles/bootstrap" )
-	@Scripts.Render( "~/bundles/main" )
 	@RenderSection( "scripts", required: false )
 </body>
 </html>

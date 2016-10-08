@@ -66,23 +66,24 @@
 		@foreach (var article in Model.Articles)
 		{
 			<div class="row well">
+				<div class="row">
+					<div class="col-md-12 text-justified">
+						<p>@article.Description.Substring( 0, 300 )...</p>
+					</div>
+				</div>
+
 				<div class="col-md-12">
 					<div class="row">
-						<div class="col-md-12">
-							<p>@article.Description.Substring( 0, 300 )...</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<span class="pull-left label label-primary">@article.CreationDate.ToString().Substring( 0, 10 )</span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-10">
 							<span class="pull-left">@article.Title</span>
 						</div>
+					</div>
+					<div class="row">
 						<div class="col-md-6">
-							<span class="pull-right">@article.Author.Login</span>
+							<span class="pull-left label label-date">@article.CreationDate.ToString().Substring( 0, 10 )</span>
+						</div>
+						<div class="col-md-6">
+							<span class="pull-right label label-author">@article.Author.Login</span>
 						</div>
 					</div>
 				</div>
@@ -94,23 +95,24 @@
 		@foreach (var topic in Model.Topics)
 		{
 			<div class="row well">
+				<div class="row">
+					<div class="col-md-12 text-justified">
+						<p>@topic.Text.Substring( 0, 300 )...</p>
+					</div>
+				</div>
+
 				<div class="col-md-12">
 					<div class="row">
-						<div class="col-md-12">
-							<p>@topic.Text.Substring( 0, 300 )...</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<span class="pull-left label label-primary">@topic.CreationDate.ToString().Substring( 0, 10 )</span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-10">
 							<span class="pull-left">@topic.Title</span>
 						</div>
+					</div>
+					<div class="row">
 						<div class="col-md-6">
-							<span class="pull-right">@topic.Author.Login</span>
+							<span class="pull-left label label-date">@topic.CreationDate.ToString().Substring( 0, 10 )</span>
+						</div>
+						<div class="col-md-6">
+							<span class="pull-right label label-author">@topic.Author.Login</span>
 						</div>
 					</div>
 				</div>
@@ -130,7 +132,7 @@
 						<div class="col-md-2">
 							<p>@ev.Title</p>
 						</div>
-						<div class="col-md-10">
+						<div class="col-md-10 text-justified">
 							<p>@ev.Description.Substring( 0, 300 )...</p>
 						</div>
 						<span class="pull-right label label-primary">Подробнее...</span>
@@ -141,13 +143,13 @@
 	</div>
 
 	<div class="col-md-5 col-md-offset-1">
-		<h3>Новый ассортимент</h3>
+		<h3 class="new-title">Новый ассортимент</h3>
 		@foreach (var product in Model.Products)
 		{
-			<div class="row well">
-				<div class="col-md-12">
-					<div class="row-fluid">
-						<div class="col-md-12 text-center">
+			<div class="col-md-6">
+				<div class="row well">
+					<div class="text-center">
+						<div class="container">
 							@{
 								var image = product.ProductImages.FirstOrDefault();
 								if (image != null)
@@ -156,21 +158,19 @@
 								}
 								else
 								{
-									<img src="">
+									<img src="~/Content/Images/no-image.svg" class="img-rounded smallImages">
 								}
 							}
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-9">
-							<h4>@product.Name</h4>
-						</div>
-						<div class="col-md-3">
-							<button class="pull-right btn btn-primary">Подробнее...</button>
+
+							<div class="text-center product-name">
+								<strong>@product.Name Т-34/76 КФЦКШЕФЦ 1/36</strong>
+							</div>
+							<button class="pull-right btn btn-primary">В корзину</button>
+							<span class="pull-left label label-price">@product.Price Р.</span>
 						</div>
 					</div>
 				</div>
 			</div>
-		}
+								}
 	</div>
 </div>

@@ -30,7 +30,7 @@ namespace ScaleModeling.WebUI.Controllers
                 Articles = articleRepository.Get.OrderByDescending( a => a.CreationDate ).Take( 3 ).ToList(),
                 Events = eventRepository.Get.OrderByDescending( e => e.CreationDate ).Take( 3 ).ToList(),
                 Topics = topicRepository.Get.OrderByDescending(t => t.CreationDate).Take(3).ToList(),
-                Products = productRepository.Get.OrderByDescending(p => p.AdditionDate).Take(3).ToList()
+                Products = productRepository.Get.OrderByDescending(p => p.AdditionDate).Take(6).ToList()
             };
 
             return View( homeViewModel );
