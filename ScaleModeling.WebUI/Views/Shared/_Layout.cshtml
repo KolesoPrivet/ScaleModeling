@@ -7,7 +7,6 @@
 	<title>@ViewBag.Title</title>
 	@Styles.Render( "~/Content/css" )
 	@Scripts.Render( "~/bundles/modernizr" )
-	@Scripts.Render( "~/bundles/main" )
 
 	<meta name="description" content="Сайт для любителей стендового моделизма" />
 </head>
@@ -19,33 +18,38 @@
 				@RenderSection( "Links" )
 			</ul>
 		</div>
-		<header class="navmenu-default navmenu-fixed-top page-header text">
-			<div class="header-content">
-				<span id="header-title" class="pull-left">@ViewBag.Title</span>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="text-center">
-						<p>Kolesoprivet</p>
+		<header>
+			<nav class="nav nav-center">
+				<ul>
+					<li>
+						<a href="@Url.Action("Index", "Home")">@ViewBag.Title</a>
 					</li>
-					<li class="text-center">
-						<span>Профиль</span>
+					<li>
+						<a href="@Url.Action("Index", "Home")">Login</a>
+					</li>
+					<li>
+						<a href="@Url.Action("Index", "Home")">Avatar</a>
 					</li>
 				</ul>
-			</div>
+			</nav>
 		</header>
 		@RenderBody()
-		<footer class="panel-footer">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="text-center">
-					<p>Kolesoprivet</p>
-				</li>
-				<li class="text-center">
-					<span>Профиль</span>
-				</li>
-			</ul>
+		<footer>
+			<nav class="nav nav-center">
+				<ul>
+					<li>
+						<a href="@Url.Action("Index", "Home")">VK</a>
+					</li>
+					<li>
+						<a href="@Url.Action("Index", "Home")">Помощь</a>
+					</li>
+				</ul>
+			</nav>
 		</footer>
 	</div>
 
 	@Scripts.Render( "~/bundles/jquery" )
+	@Scripts.Render( "~/bundles/main" )
 	@Scripts.Render( "~/bundles/bootstrap" )
 	@RenderSection( "scripts", required: false )
 </body>

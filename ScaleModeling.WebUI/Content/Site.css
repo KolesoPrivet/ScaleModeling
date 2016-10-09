@@ -1,12 +1,9 @@
 ﻿body {
     font-family: Open Sans;
-    max-width: 1560px;
 }
 
 .container-fluid {
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 40px;
+    padding-left: 150px;
     padding-right: 25px;
 }
 
@@ -15,7 +12,7 @@ a {
 }
 
 .row.well {
-    border-radius: 0;
+    border-radius: .80em;
     background-color: #F8F8F8;
 }
 
@@ -29,12 +26,13 @@ a {
 }
 
 .btn-primary {
-    background-color: #09C18B;
+    background-color: #009862;
     border: none;
+    border-radius: .40em;
 }
 
     .btn-primary:hover {
-        background-color: #009862;
+        background-color: #09C18B;
     }
 
 button.pull-right {
@@ -42,19 +40,36 @@ button.pull-right {
 }
 
 .new-title {
-    color: #177BBB;
+    border-bottom: 1px solid #e3e3e3;;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
+
+/* CONTENT */
+.text-content:hover {
+    background-color: #EBEBEB;
+}
+
+.clickable-content {
+    cursor: pointer;
+}
+
+.title{
+    font-size: 16px;
+    margin-bottom: 5px
+}
+/* END CONTENT */
 
 /* LABELS */
 
 .label-date {
     border: none;
-    width: 100px;
+    width: 120px;
     height: 25px;
     margin-top: 4px;
     margin-left: 8px;
     font-size: 15px;
-    padding-top: 5px;
+    padding-top: 4px;
     font-size: 100%;
     font-weight: bold;
     line-height: 1;
@@ -64,9 +79,38 @@ button.pull-right {
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: .80em;
-    width: 100px;
-    height: 25px;
     display: inline-block;
+}
+
+.label-viewed {
+    border: none;
+    width: 88px;
+    height: 25px;
+    margin-top: 4px;
+    margin-left: 8px;
+    font-size: 15px;
+    padding-top: 4px;
+    font-size: 100%;
+    font-weight: bold;
+    line-height: 1;
+    color: #ffffff;
+    background-color: #4DB6B9;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .80em;
+    display: inline-block;
+}
+
+span.glyphicon {
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+#viewed {
+    font-size: 16px;
+    position: relative;
+    bottom: 1px;
 }
 
 .label-price {
@@ -85,15 +129,13 @@ button.pull-right {
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: .80em;
-    width: 100px;
-    height: 25px;
+    border-radius: .50em;
     display: inline-block;
 }
 
 .label-author {
     border: none;
-    width: 100px;
+    width: 150px;
     height: 25px;
     margin-top: 4px;
     margin-left: 8px;
@@ -103,13 +145,11 @@ button.pull-right {
     font-weight: bold;
     line-height: 1;
     color: #ffffff;
-    background-color: #8C6A96;
+    background-color: #B490DF;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: .40em;
-    width: 100px;
-    height: 25px;
+    border-radius: .80em;
     display: inline-block;
 }
 /* END LABELS */
@@ -122,7 +162,7 @@ button.pull-right {
 }
 
 div.container {
-    max-width: 250px;
+    max-width: 290px;
     width: 96%;
     padding-left: 0;
     padding-right: 0;
@@ -133,6 +173,10 @@ div.container {
     height: auto;
     border: 1px solid #e3e3e3;
 }
+
+    .smallImages:hover {
+        background: #ffffff;
+    }
 
 /* END SHOP */
 
@@ -148,10 +192,6 @@ div.container {
 
 .glyphicon {
     font-size: 20px;
-}
-
-.navmenu-default .navmenu-nav > li > a, .navbar-default .navbar-offcanvas .navmenu-nav > li > a {
-    color: #D0D0D0;
 }
 
 .active {
@@ -187,38 +227,41 @@ li div a {
 /* END NAVIGATION MENU */
 
 /* HEADER */
-#header-title {
-    font-size: 20px;
+header {
+    border-bottom: 1px solid #e3e3e3;
 }
 
-.page-header {
-    height: 60px;
-    margin-top: 15px;
-    border: none;
-    background-color: #FFF;
+.nav-center {
+    margin: 10px 0;
+    text-align: right;
 }
 
-.header-content {
-    border-bottom: 1px solid rgb(235, 235, 235);
-    padding: 0px;
-    height: 55px;
-    width: 1397px;
-    margin-left: 113px;
-}
+    .nav-center ul {
+        text-align: right;
+        margin: 0;
+        padding: 0;
+    }
+
+        .nav-center ul li {
+            margin: 0 5px 0 0;
+            padding: 0;
+            list-style: none;
+            display: inline-block;
+            *display: inline; /* ie7 */
+        }
+
+            .nav-center ul li a {
+                padding: 3px 12px;
+                text-decoration: none;
+                color: #999;
+                line-height: 100%;
+            }
 /* END HEADER */
 
 /* FOOTER */
-
-.panel-footer {
-    padding: 10px 15px;
-    background-color: #fff;
-    border-bottom: 1px solid rgb(235, 235, 235);
-    height: 55px;
-    width: 1397px;
-    margin-left: 113px;
-    margin-top: 30px;
+footer {
+    border-top: 1px solid #e3e3e3;
 }
-
 /* END FOOTER*/
 
 /* Set padding to keep content from hitting the edges */

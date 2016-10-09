@@ -8,6 +8,7 @@ namespace ScaleModeling.Domain.Entities
 
         public string Image { get; set; }
 
+        public int WorkId { get; set; }
         public virtual Work Work { get; set; }
     }
 }

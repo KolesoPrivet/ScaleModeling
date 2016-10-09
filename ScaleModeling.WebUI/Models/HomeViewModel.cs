@@ -13,5 +13,7 @@ namespace ScaleModeling.WebUI.Models
         public IEnumerable<ForumTopic> Topics { get; set; }
 
         public IEnumerable<Product> Products { get; set; }
+
+        public IEnumerable<Work> Works { get; set; }
     }
 }

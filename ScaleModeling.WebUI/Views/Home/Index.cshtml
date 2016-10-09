@@ -61,58 +61,83 @@
 }
 
 <div class="row">
-	<div class="col-md-5 col-md-offset-1">
-		<h3>Новые статьи</h3>
+	<div class="col-md-6">
+		<h3 class="new-title"><strong>Новые статьи</strong></h3>
 		@foreach (var article in Model.Articles)
 		{
-			<div class="row well">
+			<div class="clickable-content row text-content well" data-href="@Url.Action("Index", "Home")">
 				<div class="row">
 					<div class="col-md-12 text-justified">
-						<p>@article.Description.Substring( 0, 300 )...</p>
+						<p>@article.Description.Substring( 0, 390 )...</p>
 					</div>
 				</div>
 
 				<div class="col-md-12">
 					<div class="row">
-						<div class="col-md-10">
-							<span class="pull-left">@article.Title</span>
-						</div>
+						<strong class="title pull-left">@article.Title</strong>
 					</div>
 					<div class="row">
-						<div class="col-md-6">
-							<span class="pull-left label label-date">@article.CreationDate.ToString().Substring( 0, 10 )</span>
-						</div>
-						<div class="col-md-6">
-							<span class="pull-right label label-author">@article.Author.Login</span>
+						<div class="col-md-12">
+							<span class="pull-left label label-date">
+								<span class="glyphicon glyphicon-time"></span>
+								<span id="viewed">@article.CreationDate.ToString().Substring( 0, 10 )</span>
+							</span>
+							<span class="pull-left label label-viewed">
+								<span class="glyphicon glyphicon-eye-open"></span>
+								<span id="viewed">@article.Viewed</span>
+							</span>
+							<span class="pull-left label label-viewed">
+								<span class="glyphicon glyphicon-thumbs-up"></span>
+								<span id="viewed">@article.Rating</span>
+							</span>
+							<span class="pull-left label label-viewed">
+								<span class="glyphicon glyphicon-comment"></span>
+								<span id="viewed">@article.Comments.Count</span>
+							</span>
+							<span class="pull-left label label-author">
+								<span class="glyphicon glyphicon-user"></span>
+								<span id="viewed">@article.Author.Login</span>
+							</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		}
 	</div>
-	<div class="col-md-5 col-md-offset-1">
-		<h3>Новые темы</h3>
+	<div class="col-md-6">
+		<h3 class="new-title"><strong>Новые темы</strong></h3>
 		@foreach (var topic in Model.Topics)
 		{
-			<div class="row well">
+			<div class="clickable-content row text-content well" data-href="@Url.Action("Index", "Home")">
 				<div class="row">
 					<div class="col-md-12 text-justified">
-						<p>@topic.Text.Substring( 0, 300 )...</p>
+						<p>@topic.Text.Substring( 0, 390 )...</p>
 					</div>
 				</div>
-
 				<div class="col-md-12">
 					<div class="row">
-						<div class="col-md-10">
-							<span class="pull-left">@topic.Title</span>
+						<div class="row">
+							<strong class="title pull-left">@topic.Title</strong>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6">
-							<span class="pull-left label label-date">@topic.CreationDate.ToString().Substring( 0, 10 )</span>
-						</div>
-						<div class="col-md-6">
-							<span class="pull-right label label-author">@topic.Author.Login</span>
+						<div class="col-md-12">
+							<span class="pull-left label label-date">
+								<span class="glyphicon glyphicon-time"></span>
+								<span id="viewed">@topic.CreationDate.ToString().Substring( 0, 10 )</span>
+							</span>
+							<span class="pull-left label label-viewed">
+								<span class="glyphicon glyphicon-eye-open"></span>
+								<span id="viewed">@topic.Viewed</span>
+							</span>
+							<span class="pull-left label label-viewed">
+								<span class="glyphicon glyphicon-comment"></span>
+								<span id="viewed">@topic.Comments.Count</span>
+							</span>
+							<span class="pull-left label label-author">
+								<span class="glyphicon glyphicon-user"></span>
+								<span id="viewed">@topic.Author.Login</span>
+							</span>
 						</div>
 					</div>
 				</div>
@@ -122,28 +147,58 @@
 
 </div>
 <div class="row">
-	<div class="col-md-5 col-md-offset-1">
-		<h3>Новые события</h3>
-		@foreach (var ev in Model.Events)
+	<div class="col-md-6">
+		<h3 class="new-title"><strong>Новые работы</strong></h3>
+		@foreach (var work in Model.Works)
 		{
-			<div class="row well">
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-2">
-							<p>@ev.Title</p>
+			<div class="col-md-6">
+				<div class="row well">
+					<div class="text-center">
+						<div class="container">
+							@{
+								var image = work.Images.FirstOrDefault();
+								if (image != null)
+								{
+									<img src="~/Content/Images/tank.jpg" class="clickable-content img-rounded smallImages" data-href="@Url.Action("Index", "Home")">
+								}
+								else
+								{
+									<img src="~/Content/Images/no-image.svg" class="clickable-content img-rounded smallImages">
+								}
+							}
+
+							<div class="text-center product-name">
+								<strong class="title">@work.Title Т-34/76 КФЦКШЕФЦ 1/36</strong>
+							</div>
+							<span class="pull-left label label-date">
+								<span class="glyphicon glyphicon-time"></span>
+								<span id="viewed">@work.CreationDate.ToString().Substring( 0, 10 )</span>
+							</span>
+							<span class="pull-left label label-author">
+								<span class="glyphicon glyphicon-user"></span>
+								<span id="viewed">@work.Author.Login</span>
+							</span>
+							<span class="pull-left label label-viewed">
+								<span class="glyphicon glyphicon-eye-open"></span>
+								<span id="viewed">@work.Viewed</span>
+							</span>
+							<span class="pull-left label label-viewed">
+								<span class="glyphicon glyphicon-thumbs-up"></span>
+								<span id="viewed">@work.Rating</span>
+							</span>
+							<span class="pull-left label label-viewed">
+								<span class="glyphicon glyphicon-comment"></span>
+								<span id="viewed">@work.Comments.Count</span>
+							</span>
 						</div>
-						<div class="col-md-10 text-justified">
-							<p>@ev.Description.Substring( 0, 300 )...</p>
-						</div>
-						<span class="pull-right label label-primary">Подробнее...</span>
 					</div>
 				</div>
 			</div>
-		}
+								}
 	</div>
 
-	<div class="col-md-5 col-md-offset-1">
-		<h3 class="new-title">Новый ассортимент</h3>
+	<div class="col-md-6">
+		<h3 class="new-title"><strong>Новый ассортимент</strong></h3>
 		@foreach (var product in Model.Products)
 		{
 			<div class="col-md-6">
@@ -154,16 +209,16 @@
 								var image = product.ProductImages.FirstOrDefault();
 								if (image != null)
 								{
-									<img src="~/Content/Images/tank.jpg" class="img-rounded smallImages">
+									<img src="~/Content/Images/tank.jpg" class="clickable-content img-rounded smallImages" data-href="@Url.Action("Index", "Home")">
 								}
 								else
 								{
-									<img src="~/Content/Images/no-image.svg" class="img-rounded smallImages">
+									<img src="~/Content/Images/no-image.svg" class="clickable-content img-rounded smallImages">
 								}
 							}
 
 							<div class="text-center product-name">
-								<strong>@product.Name Т-34/76 КФЦКШЕФЦ 1/36</strong>
+								<strong class="title">@product.Name Т-34/76 КФЦКШЕФЦ 1/36</strong>
 							</div>
 							<button class="pull-right btn btn-primary">В корзину</button>
 							<span class="pull-left label label-price">@product.Price Р.</span>
@@ -171,6 +226,48 @@
 					</div>
 				</div>
 			</div>
-								}
+		}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3 class="new-title"><strong>Новые события</strong></h3>
+		@foreach (var ev in Model.Events)
+		{
+			<div class="clickable-content row text-content well" data-href="@Url.Action("Index", "Home")">
+				<div class="row">
+					<div class="col-md-12 text-justified">
+						<p>@ev.Description.Substring( 0, 300)...</p>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="row">
+							<strong class="title pull-left">@ev.Title</strong>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<span class="pull-left label label-date">
+								<span class="glyphicon glyphicon-time"></span>
+								<span id="viewed">@ev.CreationDate.ToString().Substring( 0, 10 )</span>
+							</span>
+							<span class="pull-left label label-viewed">
+								<span class="glyphicon glyphicon-eye-open"></span>
+								<span id="viewed">@ev.Viewed</span>
+							</span>
+							<span class="pull-left label label-viewed">
+								<span class="glyphicon glyphicon-comment"></span>
+								<span id="viewed">@ev.Comments.Count</span>
+							</span>
+							<span class="pull-left label label-author">
+								<span class="glyphicon glyphicon-user"></span>
+								<span id="viewed">@ev.Author.Login</span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
 	</div>
 </div>

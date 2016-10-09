@@ -14,6 +14,8 @@ namespace ScaleModeling.Domain.Entities
 
         public DateTime CreationDate { get; set; }
 
+        public int Rating { get; set; }
+
         public int AuthorId { get; set; }
         public virtual User Author { get; set; }
 
