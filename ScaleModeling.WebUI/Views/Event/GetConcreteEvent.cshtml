@@ -1,8 +1,8 @@
 ﻿@using ScaleModeling.Domain.Entities
-@model List<Work>
+@model List<Event>
 
 @{
-    ViewBag.Title = Model.First().Title;
+	ViewBag.Title = Model.First().Title;
 }
 
 @section Links{
@@ -23,7 +23,7 @@
 	</li>
 	<li>
 		<div class="navigation-couple">
-			<a href="@Url.Action("Index", "Event")" class="glyphicon glyphicon-bullhorn">
+			<a href="@Url.Action("Index", "Event")" class="active glyphicon glyphicon-bullhorn">
 				<div>События</div>
 			</a>
 		</div>
@@ -52,7 +52,7 @@
 	</li>
 	<li>
 		<div class="navigation-couple">
-			<a href="@Url.Action("Index", "Work")" class="active glyphicon glyphicon-wrench">
+			<a href="@Url.Action("Index", "Work")" class="glyphicon glyphicon-wrench">
 				<div>Работы</div>
 			</a>
 		</div>

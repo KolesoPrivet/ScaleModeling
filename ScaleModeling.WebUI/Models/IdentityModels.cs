@@ -21,7 +21,7 @@ namespace ScaleModeling.WebUI.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base( "ScaleModeling_Content")
         {
         }
 

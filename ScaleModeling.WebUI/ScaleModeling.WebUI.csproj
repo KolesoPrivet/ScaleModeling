@@ -322,6 +322,10 @@
     <Content Include="Views\Video\Index.cshtml" />
     <Content Include="Views\Work\Index.cshtml" />
     <Content Include="Views\Work\GetConcreteWork.cshtml" />
+    <Content Include="Views\Shop\GetConcreteProduct.cshtml" />
+    <Content Include="Views\Article\GetConcreteArticle.cshtml" />
+    <Content Include="Views\Event\GetConcreteEvent.cshtml" />
+    <Content Include="Views\Forum\GetConcreteTopic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,17 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+
+using ScaleModeling.Domain.Abstract;
+using ScaleModeling.Domain.Entities;
 
 namespace ScaleModeling.WebUI.Controllers
 {
     public class ArticleController : Controller
     {
-        // GET: Blog
-        public ActionResult Index()
+        private IRepository<Article> articleRepository;
+
+        public ArticleController(IRepository<Article> articleRepositoryParam)
         {
-            return View();
+            this.articleRepository = articleRepositoryParam;
         }
+
+        public ViewResult Index()
+        {
+            return View(articleRepository.Get.ToList());
+        }
+
+        public ViewResult GetConcreteArticle(int id)
+        {
+            return View( articleRepository.Get.Where( a => a.Id == id ).ToList() );
+        }
+
     }
 }

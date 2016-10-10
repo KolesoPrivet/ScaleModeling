@@ -10,7 +10,7 @@ namespace ScaleModeling.Domain.Entities
 
         public string Text { get; set; }
 
-        public string Rating { get; set; }
+        public int Rating { get; set; }
 
         public DateTime CreationDate { get; set; }
 

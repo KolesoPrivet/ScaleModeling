@@ -1,10 +1,8 @@
-﻿using ScaleModeling.Domain.Abstract;
-using ScaleModeling.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+
+using ScaleModeling.Domain.Abstract;
+using ScaleModeling.Domain.Entities;
 
 namespace ScaleModeling.WebUI.Controllers
 {
@@ -22,9 +20,9 @@ namespace ScaleModeling.WebUI.Controllers
             return View( workRepository.Get.ToList() );
         }
 
-        public ViewResult GetConcreteWork(int workIdParam)
+        public ViewResult GetConcreteWork(int id)
         {
-            return View( workRepository.Get.Where( w => w.Id == workIdParam ).ToList() );
+            return View( workRepository.Get.Where( w => w.Id == id ).ToList() );
         }
     }
 }

@@ -1,5 +1,10 @@
 ﻿body {
     font-family: Open Sans;
+    background-color: #FCFCFC;
+}
+
+h3 {
+    color: #393F4C;
 }
 
 .container-fluid {
@@ -13,7 +18,8 @@ a {
 
 .row.well {
     border-radius: .80em;
-    background-color: #F8F8F8;
+    background-color: #F3F3F3;
+    color: #393F4C;
 }
 
 .row {
@@ -26,9 +32,12 @@ a {
 }
 
 .btn-primary {
-    background-color: #009862;
+    background-color: #393F4C;
+    color: #5FFFA4;
     border: none;
     border-radius: .40em;
+    margin-top: 10px;
+    height: 30px;
 }
 
     .btn-primary:hover {
@@ -40,7 +49,7 @@ button.pull-right {
 }
 
 .new-title {
-    border-bottom: 1px solid #e3e3e3;;
+    border-bottom: 1px solid #e3e3e3;
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
@@ -54,9 +63,9 @@ button.pull-right {
     cursor: pointer;
 }
 
-.title{
+.title {
     font-size: 16px;
-    margin-bottom: 5px
+    margin-bottom: 5px;
 }
 /* END CONTENT */
 
@@ -64,41 +73,37 @@ button.pull-right {
 
 .label-date {
     border: none;
-    width: 120px;
+    width: 112px;
     height: 25px;
     margin-top: 4px;
-    margin-left: 8px;
     font-size: 15px;
     padding-top: 4px;
     font-size: 100%;
     font-weight: bold;
     line-height: 1;
-    color: #ffffff;
-    background-color: #529663;
+    color: #FFA4AD;
+    background-color: #393F4C;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: .80em;
     display: inline-block;
 }
 
 .label-viewed {
     border: none;
-    width: 88px;
+    width: 90px;
     height: 25px;
     margin-top: 4px;
-    margin-left: 8px;
     font-size: 15px;
     padding-top: 4px;
     font-size: 100%;
     font-weight: bold;
     line-height: 1;
-    color: #ffffff;
-    background-color: #4DB6B9;
+    color: #F2E784;
+    background-color: #393F4C;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: .80em;
     display: inline-block;
 }
 
@@ -115,7 +120,7 @@ span.glyphicon {
 
 .label-price {
     border: none;
-    width: 100px;
+    width: 83px;
     height: 25px;
     margin-top: 4px;
     margin-left: 8px;
@@ -124,32 +129,29 @@ span.glyphicon {
     font-size: 100%;
     font-weight: bold;
     line-height: 1;
-    color: #ffffff;
-    background-color: #964157;
+    color: #FFA4AD;
+    background-color: #393F4C;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: .50em;
     display: inline-block;
 }
 
 .label-author {
     border: none;
-    width: 150px;
+    width: 162px;
     height: 25px;
     margin-top: 4px;
-    margin-left: 8px;
-    padding-top: 5px;
+    padding-top: 4px;
     font-size: 15px;
     font-size: 100%;
     font-weight: bold;
     line-height: 1;
-    color: #ffffff;
-    background-color: #B490DF;
+    color: #5FFFA4;
+    background-color: #393F4C;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: .80em;
     display: inline-block;
 }
 /* END LABELS */
@@ -158,7 +160,7 @@ span.glyphicon {
 .product-name {
     font-size: 16px;
     color: #00004A;
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
 div.container {
@@ -172,6 +174,8 @@ div.container {
     width: 100%;
     height: auto;
     border: 1px solid #e3e3e3;
+    background: #fff;
+    margin-bottom: 10px;
 }
 
     .smallImages:hover {
@@ -185,6 +189,14 @@ div.container {
     margin-top: 20px;
 }
 
+.navmenu-default {
+    background-color: #393F4C;
+}
+
+.navmenu-brand {
+    color: #fff;
+}
+
 .navmenu {
     width: 7%;
     border: none;
@@ -195,12 +207,12 @@ div.container {
 }
 
 .active {
-    background-color: #ffffff;
-    color: #808080;
+    background-color: #5E6471;
+    color: #5FFFA4;
 }
 
 li div a {
-    color: #D0D0D0;
+    color: #EAEAEA;
     height: 75px;
     width: 100%;
     padding: 15px 0;
@@ -208,12 +220,12 @@ li div a {
 
     li div a:hover {
         text-decoration: none;
-        color: #808080;
+        color: #5FFFA4;
     }
 
     li div a:focus {
         text-decoration: none;
-        color: #808080;
+        color: #5FFFA4;
     }
 
 .navigation-couple div {
@@ -229,6 +241,7 @@ li div a {
 /* HEADER */
 header {
     border-bottom: 1px solid #e3e3e3;
+    padding: 15px 0;
 }
 
 .nav-center {
@@ -253,7 +266,7 @@ header {
             .nav-center ul li a {
                 padding: 3px 12px;
                 text-decoration: none;
-                color: #999;
+                color: #393F4C;
                 line-height: 100%;
             }
 /* END HEADER */

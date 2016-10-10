@@ -65,7 +65,7 @@
 		<h3 class="new-title"><strong>Новые статьи</strong></h3>
 		@foreach (var article in Model.Articles)
 		{
-			<div class="clickable-content row text-content well" data-href="@Url.Action("Index", "Home")">
+			<div class="clickable-content row text-content well" data-href="@Url.Action("GetConcreteArticle", "Article", new { id = article.Id })">
 				<div class="row">
 					<div class="col-md-12 text-justified">
 						<p>@article.Description.Substring( 0, 390 )...</p>
@@ -77,24 +77,24 @@
 						<strong class="title pull-left">@article.Title</strong>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
-							<span class="pull-left label label-date">
+						<div class="pull-left">
+							<span class="label label-date">
 								<span class="glyphicon glyphicon-time"></span>
 								<span id="viewed">@article.CreationDate.ToString().Substring( 0, 10 )</span>
 							</span>
-							<span class="pull-left label label-viewed">
+							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-eye-open"></span>
 								<span id="viewed">@article.Viewed</span>
 							</span>
-							<span class="pull-left label label-viewed">
+							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-thumbs-up"></span>
 								<span id="viewed">@article.Rating</span>
 							</span>
-							<span class="pull-left label label-viewed">
+							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-comment"></span>
 								<span id="viewed">@article.Comments.Count</span>
 							</span>
-							<span class="pull-left label label-author">
+							<span class="label label-author">
 								<span class="glyphicon glyphicon-user"></span>
 								<span id="viewed">@article.Author.Login</span>
 							</span>
@@ -108,7 +108,7 @@
 		<h3 class="new-title"><strong>Новые темы</strong></h3>
 		@foreach (var topic in Model.Topics)
 		{
-			<div class="clickable-content row text-content well" data-href="@Url.Action("Index", "Home")">
+			<div class="clickable-content row text-content well" data-href="@Url.Action("GetConcreteTopic", "Forum", new { id = topic.Id })">
 				<div class="row">
 					<div class="col-md-12 text-justified">
 						<p>@topic.Text.Substring( 0, 390 )...</p>
@@ -121,20 +121,20 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
-							<span class="pull-left label label-date">
+						<div class="pull-left">
+							<span class="label label-date">
 								<span class="glyphicon glyphicon-time"></span>
 								<span id="viewed">@topic.CreationDate.ToString().Substring( 0, 10 )</span>
 							</span>
-							<span class="pull-left label label-viewed">
+							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-eye-open"></span>
 								<span id="viewed">@topic.Viewed</span>
 							</span>
-							<span class="pull-left label label-viewed">
+							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-comment"></span>
 								<span id="viewed">@topic.Comments.Count</span>
 							</span>
-							<span class="pull-left label label-author">
+							<span class="label label-author">
 								<span class="glyphicon glyphicon-user"></span>
 								<span id="viewed">@topic.Author.Login</span>
 							</span>
@@ -155,41 +155,43 @@
 				<div class="row well">
 					<div class="text-center">
 						<div class="container">
+							<div class="text-center product-name">
+								<strong class="title">@work.Title</strong>
+							</div>
+
 							@{
 								var image = work.Images.FirstOrDefault();
 								if (image != null)
 								{
-									<img src="~/Content/Images/tank.jpg" class="clickable-content img-rounded smallImages" data-href="@Url.Action("Index", "Home")">
+									<img src="~/Content/Images/tank.jpg" class="clickable-content img-rounded smallImages" data-href="@Url.Action("GetConcreteWork", "Work", new { id = work.Id })">
 								}
 								else
 								{
 									<img src="~/Content/Images/no-image.svg" class="clickable-content img-rounded smallImages">
 								}
 							}
-
-							<div class="text-center product-name">
-								<strong class="title">@work.Title Т-34/76 КФЦКШЕФЦ 1/36</strong>
+							<div class="container text-center">
+								<span class="label label-date">
+									<span class="glyphicon glyphicon-time"></span>
+									<span id="viewed">@work.CreationDate.ToString().Substring( 0, 10 )</span>
+								</span>
+								<span class="label label-author">
+									<span class="glyphicon glyphicon-user"></span>
+									<span id="viewed">@work.Author.Login</span>
+								</span>
+								<span class="label label-viewed">
+									<span class="glyphicon glyphicon-eye-open"></span>
+									<span id="viewed">@work.Viewed</span>
+								</span>
+								<span class="label label-viewed">
+									<span class="glyphicon glyphicon-thumbs-up"></span>
+									<span id="viewed">@work.Rating</span>
+								</span>
+								<span class="label label-viewed">
+									<span class="glyphicon glyphicon-comment"></span>
+									<span id="viewed">@work.Comments.Count</span>
+								</span>
 							</div>
-							<span class="pull-left label label-date">
-								<span class="glyphicon glyphicon-time"></span>
-								<span id="viewed">@work.CreationDate.ToString().Substring( 0, 10 )</span>
-							</span>
-							<span class="pull-left label label-author">
-								<span class="glyphicon glyphicon-user"></span>
-								<span id="viewed">@work.Author.Login</span>
-							</span>
-							<span class="pull-left label label-viewed">
-								<span class="glyphicon glyphicon-eye-open"></span>
-								<span id="viewed">@work.Viewed</span>
-							</span>
-							<span class="pull-left label label-viewed">
-								<span class="glyphicon glyphicon-thumbs-up"></span>
-								<span id="viewed">@work.Rating</span>
-							</span>
-							<span class="pull-left label label-viewed">
-								<span class="glyphicon glyphicon-comment"></span>
-								<span id="viewed">@work.Comments.Count</span>
-							</span>
 						</div>
 					</div>
 				</div>
@@ -205,28 +207,45 @@
 				<div class="row well">
 					<div class="text-center">
 						<div class="container">
+							<div class="text-center product-name">
+								<strong class="title">@product.Name</strong>
+							</div>
+
 							@{
 								var image = product.ProductImages.FirstOrDefault();
 								if (image != null)
 								{
-									<img src="~/Content/Images/tank.jpg" class="clickable-content img-rounded smallImages" data-href="@Url.Action("Index", "Home")">
+									<img src="~/Content/Images/tank.jpg" class="clickable-content img-rounded smallImages" data-href="@Url.Action("GetConcreteProduct", "Shop", new { id = product.Id })">
 								}
 								else
 								{
 									<img src="~/Content/Images/no-image.svg" class="clickable-content img-rounded smallImages">
 								}
 							}
-
-							<div class="text-center product-name">
-								<strong class="title">@product.Name Т-34/76 КФЦКШЕФЦ 1/36</strong>
+							<div class="container text-center">
+								<span class="label label-price">
+									<span id="viewed">@product.Price Р.</span>
+								</span>
+								<span class="label label-viewed">
+									<span class="glyphicon glyphicon-star"></span>
+									<span id="viewed">@product.Rating</span>
+								</span>
+								<span class="label label-viewed">
+									<span class="glyphicon glyphicon-comment"></span>
+									<span id="viewed">@product.ProductComments.Count</span>
+								</span>
 							</div>
-							<button class="pull-right btn btn-primary">В корзину</button>
-							<span class="pull-left label label-price">@product.Price Р.</span>
+							<div class="row">
+								<button class="col-md-12 btn btn-primary">
+									<span class="glyphicon glyphicon-shopping-cart"></span>
+									<span id="viewed">В КОРЗИНУ</span>
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		}
+								}
 	</div>
 </div>
 <div class="row">
@@ -234,10 +253,10 @@
 		<h3 class="new-title"><strong>Новые события</strong></h3>
 		@foreach (var ev in Model.Events)
 		{
-			<div class="clickable-content row text-content well" data-href="@Url.Action("Index", "Home")">
+			<div class="clickable-content row text-content well" data-href="@Url.Action("GetConcreteEvent", "Event", new { id = ev.Id })">
 				<div class="row">
 					<div class="col-md-12 text-justified">
-						<p>@ev.Description.Substring( 0, 300)...</p>
+						<p>@ev.Description.Substring( 0, 300 )...</p>
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -247,20 +266,20 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
-							<span class="pull-left label label-date">
+						<div class="pull-left">
+							<span class="label label-date">
 								<span class="glyphicon glyphicon-time"></span>
 								<span id="viewed">@ev.CreationDate.ToString().Substring( 0, 10 )</span>
 							</span>
-							<span class="pull-left label label-viewed">
+							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-eye-open"></span>
 								<span id="viewed">@ev.Viewed</span>
 							</span>
-							<span class="pull-left label label-viewed">
+							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-comment"></span>
 								<span id="viewed">@ev.Comments.Count</span>
 							</span>
-							<span class="pull-left label label-author">
+							<span class="label label-author">
 								<span class="glyphicon glyphicon-user"></span>
 								<span id="viewed">@ev.Author.Login</span>
 							</span>
