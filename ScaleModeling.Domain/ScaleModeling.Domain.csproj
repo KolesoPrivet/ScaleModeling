@@ -38,6 +38,14 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -82,7 +90,6 @@
     <Compile Include="Concrete\ArticleCommentRepository.cs" />
     <Compile Include="Concrete\ArticleImageRepository.cs" />
     <Compile Include="Concrete\ArticleRepository.cs" />
-    <Compile Include="Concrete\EntityFrameworkDBContext.cs" />
     <Compile Include="Concrete\EventCommentRepository.cs" />
     <Compile Include="Concrete\EventImageRepository.cs" />
     <Compile Include="Concrete\EventRepository.cs" />
@@ -97,14 +104,13 @@
     <Compile Include="Concrete\ProductRepository.cs" />
     <Compile Include="Concrete\UserDetailRepository.cs" />
     <Compile Include="Concrete\UserNotificationRepository.cs" />
-    <Compile Include="Concrete\UserRepository.cs" />
-    <Compile Include="Concrete\UserRoleRepository.cs" />
     <Compile Include="Concrete\VideoCommentRepository.cs" />
     <Compile Include="Concrete\VideoContentRepository.cs" />
     <Compile Include="Concrete\WishListRepository.cs" />
     <Compile Include="Concrete\WorkCommetRepository.cs" />
     <Compile Include="Concrete\WorkImageRepository.cs" />
     <Compile Include="Concrete\WorkRepository.cs" />
+    <Compile Include="EF\ApplicationDbContext.cs" />
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\ArticleComment.cs" />
     <Compile Include="Entities\ArticleImage.cs" />
@@ -120,8 +126,11 @@
     <Compile Include="Entities\ProductCategory.cs" />
     <Compile Include="Entities\ProductComment.cs" />
     <Compile Include="Entities\ProductImage.cs" />
+    <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserClaim.cs" />
     <Compile Include="Entities\UserDetail.cs" />
+    <Compile Include="Entities\UserLogin.cs" />
     <Compile Include="Entities\UserNotification.cs" />
     <Compile Include="Entities\UserRole.cs" />
     <Compile Include="Entities\VideoComment.cs" />

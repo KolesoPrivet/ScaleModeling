@@ -2,12 +2,13 @@
 
 using ScaleModeling.Domain.Abstract;
 using ScaleModeling.Domain.Entities;
+using ScaleModeling.Domain.EF;
 
 namespace ScaleModeling.Domain.Concrete
 {
-    public class ForumCategoryRepository : IRepository<ForumCategory>
+    public class ForumCategoryRepository : IRepository<ForumCategory, int>
     {
-        private EntityFrameworkDBContext context = new EntityFrameworkDBContext();
+        private ApplicationDbContext context = new ApplicationDbContext();
 
         public IQueryable<ForumCategory> Get
         {

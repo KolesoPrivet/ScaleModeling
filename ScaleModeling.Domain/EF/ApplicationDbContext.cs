@@ -1,23 +1,36 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 using ScaleModeling.Domain.Entities;
 
-namespace ScaleModeling.Domain.Concrete
+namespace ScaleModeling.Domain.EF
 {
-    public class EntityFrameworkDBContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<User, Role, string, UserLogin, UserRole, UserClaim>
     {
-        public EntityFrameworkDBContext() : base( "name = ScaleModeling_Content" )
+        public ApplicationDbContext()
+            : base( "ScaleModeling_Content" )
         {
+        }
+
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating( modelBuilder );
-        }
 
-        public virtual DbSet<User> Users { get; set; }
+            // Map Entities to their tables.
+            modelBuilder.Entity<User>().ToTable( "Users" );
+            modelBuilder.Entity<Role>().ToTable( "Roles" );
+
+            modelBuilder.Entity<UserDetail>().ToTable( "UserDetails" );
+            modelBuilder.Entity<UserRole>().ToTable( "UserRoles" );
+            modelBuilder.Entity<UserClaim>().ToTable( "UserClaims" );
+            modelBuilder.Entity<UserLogin>().ToTable( "UserLogins" );
+        }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
-        public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<UserNotification> UserNotifications { get; set; }
 
         public virtual DbSet<Article> Articles { get; set; }

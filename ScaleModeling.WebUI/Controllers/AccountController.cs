@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ScaleModeling.WebUI.Models;
+using ScaleModeling.Domain.Entities;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace ScaleModeling.WebUI.Controllers
 {
@@ -22,7 +25,7 @@ namespace ScaleModeling.WebUI.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +37,9 @@ namespace ScaleModeling.WebUI.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -70,24 +73,24 @@ namespace ScaleModeling.WebUI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View( model );
             }
 
             // Сбои при входе не приводят к блокированию учетной записи
             // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync( model.Email, model.Password, model.RememberMe, shouldLockout: false );
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToLocal( returnUrl );
                 case SignInStatus.LockedOut:
-                    return View("Lockout");
+                    return View( "Lockout" );
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction( "SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe } );
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Неудачная попытка входа.");
-                    return View(model);
+                    ModelState.AddModelError( "", "Неудачная попытка входа." );
+                    return View( model );
             }
         }
 
@@ -99,9 +102,9 @@ namespace ScaleModeling.WebUI.Controllers
             // Требовать предварительный вход пользователя с помощью имени пользователя и пароля или внешнего имени входа
             if (!await SignInManager.HasBeenVerifiedAsync())
             {
-                return View("Error");
+                return View( "Error" );
             }
-            return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
+            return View( new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe } );
         }
 
         //
@@ -113,24 +116,24 @@ namespace ScaleModeling.WebUI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View( model );
             }
 
             // Приведенный ниже код защищает от атак методом подбора, направленных на двухфакторные коды. 
             // Если пользователь введет неправильные коды за указанное время, его учетная запись 
             // будет заблокирована на заданный период. 
             // Параметры блокирования учетных записей можно настроить в IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync( model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser );
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(model.ReturnUrl);
+                    return RedirectToLocal( model.ReturnUrl );
                 case SignInStatus.LockedOut:
-                    return View("Lockout");
+                    return View( "Lockout" );
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Неправильный код.");
-                    return View(model);
+                    ModelState.AddModelError( "", "Неправильный код." );
+                    return View( model );
             }
         }
 
@@ -151,25 +154,27 @@ namespace ScaleModeling.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+
+                var user = new User { UserName = model.Login, Email = model.Email, Id = Guid.NewGuid().ToString() };
+                var result = await UserManager.CreateAsync( user, model.Password );
+
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync( user, isPersistent: false, rememberBrowser: false );
+
                     // Дополнительные сведения о том, как включить подтверждение учетной записи и сброс пароля, см. по адресу: http://go.microsoft.com/fwlink/?LinkID=320771
                     // Отправка сообщения электронной почты с этой ссылкой
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Подтверждение учетной записи", "Подтвердите вашу учетную запись, щелкнув <a href=\"" + callbackUrl + "\">здесь</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction( "Index", "Home" );
                 }
-                AddErrors(result);
+                AddErrors( result );
             }
 
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
-            return View(model);
+            return View( model );
         }
 
         //
@@ -177,12 +182,12 @@ namespace ScaleModeling.WebUI.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
-            if (userId == null || code == null)
+            if (code == null)
             {
-                return View("Error");
+                return View( "Error" );
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            var result = await UserManager.ConfirmEmailAsync( userId, code );
+            return View( result.Succeeded ? "ConfirmEmail" : "Error" );
         }
 
         //
@@ -202,11 +207,11 @@ namespace ScaleModeling.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var user = await UserManager.FindByNameAsync( model.Email );
+                if (user == null || !(await UserManager.IsEmailConfirmedAsync( user.Id )))
                 {
                     // Не показывать, что пользователь не существует или не подтвержден
-                    return View("ForgotPasswordConfirmation");
+                    return View( "ForgotPasswordConfirmation" );
                 }
 
                 // Дополнительные сведения о том, как включить подтверждение учетной записи и сброс пароля, см. по адресу: http://go.microsoft.com/fwlink/?LinkID=320771
@@ -218,7 +223,7 @@ namespace ScaleModeling.WebUI.Controllers
             }
 
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
-            return View(model);
+            return View( model );
         }
 
         //
@@ -234,7 +239,7 @@ namespace ScaleModeling.WebUI.Controllers
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
-            return code == null ? View("Error") : View();
+            return code == null ? View( "Error" ) : View();
         }
 
         //
@@ -246,20 +251,20 @@ namespace ScaleModeling.WebUI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View( model );
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByNameAsync( model.Email );
             if (user == null)
             {
                 // Не показывать, что пользователь не существует
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction( "ResetPasswordConfirmation", "Account" );
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var result = await UserManager.ResetPasswordAsync( user.Id, model.Code, model.Password );
             if (result.Succeeded)
             {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction( "ResetPasswordConfirmation", "Account" );
             }
-            AddErrors(result);
+            AddErrors( result );
             return View();
         }
 
@@ -279,7 +284,7 @@ namespace ScaleModeling.WebUI.Controllers
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Запрос перенаправления к внешнему поставщику входа
-            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            return new ChallengeResult( provider, Url.Action( "ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl } ) );
         }
 
         //
@@ -288,13 +293,10 @@ namespace ScaleModeling.WebUI.Controllers
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
-            if (userId == null)
-            {
-                return View("Error");
-            }
-            var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
-            var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-            return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
+
+            var userFactors = await UserManager.GetValidTwoFactorProvidersAsync( userId );
+            var factorOptions = userFactors.Select( purpose => new SelectListItem { Text = purpose, Value = purpose } ).ToList();
+            return View( new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe } );
         }
 
         //
@@ -310,11 +312,11 @@ namespace ScaleModeling.WebUI.Controllers
             }
 
             // Создание и отправка маркера
-            if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
+            if (!await SignInManager.SendTwoFactorCodeAsync( model.SelectedProvider ))
             {
-                return View("Error");
+                return View( "Error" );
             }
-            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+            return RedirectToAction( "VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe } );
         }
 
         //
@@ -325,25 +327,25 @@ namespace ScaleModeling.WebUI.Controllers
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction( "Login" );
             }
 
             // Выполнение входа пользователя посредством данного внешнего поставщика входа, если у пользователя уже есть имя входа
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            var result = await SignInManager.ExternalSignInAsync( loginInfo, isPersistent: false );
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToLocal( returnUrl );
                 case SignInStatus.LockedOut:
-                    return View("Lockout");
+                    return View( "Lockout" );
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+                    return RedirectToAction( "SendCode", new { ReturnUrl = returnUrl, RememberMe = false } );
                 case SignInStatus.Failure:
                 default:
                     // Если у пользователя нет учетной записи, то ему предлагается создать ее
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    return View( "ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email } );
             }
         }
 
@@ -356,7 +358,7 @@ namespace ScaleModeling.WebUI.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Manage");
+                return RedirectToAction( "Index", "Manage" );
             }
 
             if (ModelState.IsValid)
@@ -365,24 +367,24 @@ namespace ScaleModeling.WebUI.Controllers
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
-                    return View("ExternalLoginFailure");
+                    return View( "ExternalLoginFailure" );
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user);
+                var user = new User { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync( user );
                 if (result.Succeeded)
                 {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    result = await UserManager.AddLoginAsync( user.Id, info.Login );
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
+                        await SignInManager.SignInAsync( user, isPersistent: false, rememberBrowser: false );
+                        return RedirectToLocal( returnUrl );
                     }
                 }
-                AddErrors(result);
+                AddErrors( result );
             }
 
             ViewBag.ReturnUrl = returnUrl;
-            return View(model);
+            return View( model );
         }
 
         //
@@ -391,8 +393,8 @@ namespace ScaleModeling.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            AuthenticationManager.SignOut( DefaultAuthenticationTypes.ApplicationCookie );
+            return RedirectToAction( "Index", "Home" );
         }
 
         //
@@ -420,7 +422,7 @@ namespace ScaleModeling.WebUI.Controllers
                 }
             }
 
-            base.Dispose(disposing);
+            base.Dispose( disposing );
         }
 
         #region Вспомогательные приложения
@@ -439,23 +441,23 @@ namespace ScaleModeling.WebUI.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError( "", error );
             }
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
+            if (Url.IsLocalUrl( returnUrl ))
             {
-                return Redirect(returnUrl);
+                return Redirect( returnUrl );
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction( "Index", "Home" );
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
         {
             public ChallengeResult(string provider, string redirectUri)
-                : this(provider, redirectUri, null)
+                : this( provider, redirectUri, null )
             {
             }
 
@@ -477,7 +479,7 @@ namespace ScaleModeling.WebUI.Controllers
                 {
                     properties.Dictionary[XsrfKey] = UserId;
                 }
-                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+                context.HttpContext.GetOwinContext().Authentication.Challenge( properties, LoginProvider );
             }
         }
         #endregion

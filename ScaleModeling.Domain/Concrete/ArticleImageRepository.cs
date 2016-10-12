@@ -2,12 +2,13 @@
 
 using ScaleModeling.Domain.Abstract;
 using ScaleModeling.Domain.Entities;
+using ScaleModeling.Domain.EF;
 
 namespace ScaleModeling.Domain.Concrete
 {
-    public class ArticleImageRepository : IRepository<ArticleImage>
+    public class ArticleImageRepository : IRepository<ArticleImage, int>
     {
-        private EntityFrameworkDBContext context = new EntityFrameworkDBContext();
+        private ApplicationDbContext context = new ApplicationDbContext();
 
         public IQueryable<ArticleImage> Get
         {

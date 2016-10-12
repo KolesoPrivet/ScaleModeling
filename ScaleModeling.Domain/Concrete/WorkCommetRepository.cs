@@ -2,12 +2,13 @@
 
 using ScaleModeling.Domain.Abstract;
 using ScaleModeling.Domain.Entities;
+using ScaleModeling.Domain.EF;
 
 namespace ScaleModeling.Domain.Concrete
 {
-    public class WorkCommentRepository : IRepository<WorkComment>
+    public class WorkCommentRepository : IRepository<WorkComment, int>
     {
-        private EntityFrameworkDBContext context = new EntityFrameworkDBContext();
+        private ApplicationDbContext context = new ApplicationDbContext();
 
         public IQueryable<WorkComment> Get
         {

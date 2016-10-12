@@ -17,7 +17,7 @@ namespace ScaleModeling.Domain.Entities
 
         public int Rating { get; set; }
 
-        public int ProductCount { get; set; }
+        public int? ProductCount { get; set; }
 
         public DateTime AdditionDate { get; set; }
 

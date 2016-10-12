@@ -8,9 +8,9 @@ namespace ScaleModeling.WebUI.Controllers
 {
     public class EventController : Controller
     {
-        private IRepository<Event> eventRepository;
+        private IRepository<Event, int> eventRepository;
 
-        public EventController(IRepository<Event> eventRepositoryParam)
+        public EventController(IRepository<Event, int> eventRepositoryParam)
         {
             this.eventRepository = eventRepositoryParam;
         }

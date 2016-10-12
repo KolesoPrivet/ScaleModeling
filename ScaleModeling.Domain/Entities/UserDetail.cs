@@ -1,10 +1,15 @@
-﻿using ScaleModeling.Domain.Abstract;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+using ScaleModeling.Domain.Abstract;
 
 namespace ScaleModeling.Domain.Entities
 {
-    public class UserDetail : IEntity
+    public class UserDetail : IEntity<string>
     {
-        public int Id { get; set; }
+        [Key]
+        [ForeignKey("User")]
+        public string Id { get; set; }
 
         public int Rating { get; set; }
 
@@ -18,7 +23,6 @@ namespace ScaleModeling.Domain.Entities
 
         public string City { get; set; }
 
-        public int UserId { get; set; }
         public virtual User User { get; set; }
     }
 }

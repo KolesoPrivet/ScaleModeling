@@ -1,32 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 using ScaleModeling.Domain.Abstract;
 
+
 namespace ScaleModeling.Domain.Entities
 {
-    public class User : IEntity
+    public class User : IdentityUser<string, UserLogin, UserRole, UserClaim>, IEntity<string>
     {
-        [Key]
-        [ForeignKey("UserDetail")]
-        public int Id { get; set; }
+        //public DateTime LastLogin { get; set; }
 
-        [Required(ErrorMessage = "Необходимо ввести логин")]
-        [StringLength(20, MinimumLength = 3, ErrorMessage = "Количество символов логина должно быть в диапазоне от 3 до 20")]
-        public string Login { get; set; }
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User, string> manager)
+        {
+            // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync( this, DefaultAuthenticationTypes.ApplicationCookie );
+            // Здесь добавьте утверждения пользователя
+            return userIdentity;
+        }
 
-        public string Password { get; set; }
-
-        [Required(ErrorMessage = "Необходимо ввести электронную почту")]
-        [DataType( DataType.EmailAddress )]
-        public string Email { get; set; }
-
-        public DateTime LastLogin { get; set; }
-
-        public int RoleId { get; set; }
-        public virtual UserRole Role { get; set; }
         public virtual UserDetail UserDetail { get; set; }
         public virtual List<UserNotification> UserNotifications { get; set; }
 

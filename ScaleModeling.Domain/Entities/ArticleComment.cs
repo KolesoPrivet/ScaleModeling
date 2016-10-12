@@ -16,7 +16,7 @@ namespace ScaleModeling.Domain.Entities
 
         public int Rating { get; set; }
 
-        public int AuthorId { get; set; }
+        public string AuthorId { get; set; }
         public virtual User Author { get; set; }
 
         public int ArticleId { get; set; }

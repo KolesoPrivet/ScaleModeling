@@ -9,15 +9,15 @@ namespace ScaleModeling.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        private IRepository<Article> articleRepository;
-        private IRepository<Event> eventRepository;
-        private IRepository<ForumTopic> topicRepository;
-        private IRepository<Product> productRepository;
-        private IRepository<Work> workRepository;
+        private IRepository<Article, int> articleRepository;
+        private IRepository<Event, int> eventRepository;
+        private IRepository<ForumTopic, int> topicRepository;
+        private IRepository<Product, int> productRepository;
+        private IRepository<Work, int> workRepository;
 
-        public HomeController(IRepository<Article> articleRepositoryParam, IRepository<Event> eventRepositoryParam,
-                              IRepository<ForumTopic> topicRepositoryParam, IRepository<Product> productRepositoryParam,
-                              IRepository<Work> workRepositoryParam)
+        public HomeController(IRepository<Article, int> articleRepositoryParam, IRepository<Event, int> eventRepositoryParam,
+                              IRepository<ForumTopic, int> topicRepositoryParam, IRepository<Product, int> productRepositoryParam,
+                              IRepository<Work, int> workRepositoryParam)
         {
             this.articleRepository = articleRepositoryParam;
             this.eventRepository = eventRepositoryParam;

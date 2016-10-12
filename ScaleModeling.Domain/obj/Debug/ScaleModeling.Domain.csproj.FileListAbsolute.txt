@@ -29,3 +29,9 @@ C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleMod
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\ru\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Александр\Desktop\Common\Documents\GitHubVisualStudio\ScaleModeling\ScaleModeling.Domain\bin\Debug\ru\Microsoft.AspNet.Identity.EntityFramework.resources.dll

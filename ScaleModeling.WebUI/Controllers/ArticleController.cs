@@ -8,9 +8,9 @@ namespace ScaleModeling.WebUI.Controllers
 {
     public class ArticleController : Controller
     {
-        private IRepository<Article> articleRepository;
+        private IRepository<Article, int> articleRepository;
 
-        public ArticleController(IRepository<Article> articleRepositoryParam)
+        public ArticleController(IRepository<Article, int> articleRepositoryParam)
         {
             this.articleRepository = articleRepositoryParam;
         }

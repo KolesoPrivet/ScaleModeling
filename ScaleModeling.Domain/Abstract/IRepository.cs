@@ -6,7 +6,7 @@ namespace ScaleModeling.Domain.Abstract
     /// Common interface for all repositories.
     /// </summary>
     /// <typeparam name="T">T - concrete entity.</typeparam>
-    public interface IRepository<T> where T: IEntity
+    public interface IRepository<T, R> where T: IEntity<R>
     {
         /// <summary>
         /// Return T - entities.

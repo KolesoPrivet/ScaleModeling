@@ -9,12 +9,11 @@ namespace ScaleModeling.Domain.Entities
     {
         public int Id { get; set; }
 
-        [Required( ErrorMessage = "Необходимо ввести текст комментария" )]
         public string Text { get; set; }
 
         public DateTime CreationDate { get; set; }
 
-        public int AuthorId { get; set; }
+        public string AuthorId { get; set; }
         public virtual User Author { get; set; }
 
         public int WorkId { get; set; }
