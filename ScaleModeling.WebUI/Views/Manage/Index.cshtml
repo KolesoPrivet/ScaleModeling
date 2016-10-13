@@ -1,12 +1,17 @@
 ﻿@model ScaleModeling.WebUI.Models.IndexViewModel
 @{
-    ViewBag.Title = "Управление";
+	ViewBag.Title = "Управление";
 }
 
 @section Links{
 	<li>
 		<div class="navigation-couple">
-			<a href="@Url.Action("Index", "Home")" class="active glyphicon glyphicon-home">
+			<img src="~/Content/Images/avatar.jpg" class="clickable-content img-circle logo-image" data-href="@Url.Action("Index", "Manage")" />
+		</div>
+	</li>
+	<li>
+		<div class="navigation-couple">
+			<a href="@Url.Action( "Index", "Home" )" class="active glyphicon glyphicon-home">
 				<div>Главная</div>
 			</a>
 		</div>
@@ -14,28 +19,28 @@
 	</li>
 	<li>
 		<div class="navigation-couple">
-			<a href="@Url.Action("Index", "Shop")" class="glyphicon glyphicon-usd">
+			<a href="@Url.Action( "Index", "Shop" )" class="glyphicon glyphicon-usd">
 				<div>Магазин</div>
 			</a>
 		</div>
 	</li>
 	<li>
 		<div class="navigation-couple">
-			<a href="@Url.Action("Index", "Event")" class="glyphicon glyphicon-bullhorn">
+			<a href="@Url.Action( "Index", "Event" )" class="glyphicon glyphicon-bullhorn">
 				<div>События</div>
 			</a>
 		</div>
 	</li>
 	<li>
 		<div class="navigation-couple">
-			<a href="@Url.Action("Index", "Article")" class="glyphicon glyphicon-list-alt">
+			<a href="@Url.Action( "Index", "Article" )" class="glyphicon glyphicon-list-alt">
 				<div>Статьи</div>
 			</a>
 		</div>
 	</li>
 	<li>
 		<div class="navigation-couple">
-			<a href="@Url.Action("Index", "Forum")" class="glyphicon glyphicon-pencil">
+			<a href="@Url.Action( "Index", "Forum" )" class="glyphicon glyphicon-pencil">
 				<div>Форум</div>
 			</a>
 		</div>
@@ -43,97 +48,167 @@
 	</li>
 	<li>
 		<div class="navigation-couple">
-			<a href="@Url.Action("Index", "Video")" class="glyphicon glyphicon-film">
+			<a href="@Url.Action( "Index", "Video" )" class="glyphicon glyphicon-film">
 				<div>Видео</div>
 			</a>
 		</div>
 	</li>
 	<li>
 		<div class="navigation-couple">
-			<a href="@Url.Action("Index", "Work")" class="glyphicon glyphicon-wrench">
+			<a href="@Url.Action( "Index", "Work" )" class="glyphicon glyphicon-wrench">
 				<div>Работы</div>
 			</a>
 		</div>
 	</li>
 }
 
-<p class="text-success">@ViewBag.StatusMessage</p>
+
 <div>
-    <h4>Изменение параметров учетной записи</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Пароль:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
+	<h4>Подробная информация</h4>
+	<dl class="dl-horizontal">
+		<dt>Логин:</dt>
+		<dd>
+			@{
+				if (Model.UserDetails.Count() > 0)
+				{
+					<p>@Model.UserDetails.First().User.UserName.ToString()</p>
+				}
+				else
+				{
+					<p>Пусто</p>
+				}
+			}
+		</dd>
+		<dt>Имя:</dt>
+		<dd>
+			@{
+				if (Model.UserDetails.Count() > 0 && !Model.UserDetails.First().FirstName.IsEmpty())
+				{
+					<p>@Model.UserDetails.First().FirstName.ToString()</p>
+				}
+				else
+				{
+					<p>Пусто</p>
+				}
+			}
+		</dd>
+		<dt>Фамилия:</dt>
+		<dd>
+			@{
+				if (Model.UserDetails.Count() > 0 && !Model.UserDetails.First().SecondName.IsEmpty())
+				{
+					<p>@Model.UserDetails.First().SecondName.ToString()</p>
+				}
+				else
+				{
+					<p>Пусто</p>
+				}
+			}
+		</dd>
+		<dt>Город:</dt>
+		<dd>
+			@{
+				if (Model.UserDetails.Count() > 0 && !Model.UserDetails.First().City.IsEmpty())
+				{
+					<p>@Model.UserDetails.First().City.ToString()</p>
+				}
+				else
+				{
+					<p>Пусто</p>
+				}
+			}
+		</dd>
+		<dt>Обо мне:</dt>
+		<dd>
+			@{
+				if (Model.UserDetails.Count() > 0 && !Model.UserDetails.First().About.IsEmpty())
+				{
+					<p>@Model.UserDetails.First().About.ToString()</p>
+				}
+				else
+				{
+					<p>Пусто</p>
+				}
+			}
+		</dd>
+	</dl>
+</div>
+
+<div>
+	<h4>Изменение параметров учетной записи</h4>
+	<dl class="dl-horizontal">
+		<dt>Пароль:</dt>
+		<dd>
+			[
+			@if (Model.HasPassword)
             {
-                @Html.ActionLink("Смена пароля", "ChangePassword")
+				@Html.ActionLink( "Смена пароля", "ChangePassword" )
             }
             else
             {
-                @Html.ActionLink("Создать", "SetPassword")
+				@Html.ActionLink( "Создать", "SetPassword" )
             }
-            ]
-        </dd>
-        <dt>Внешние имена входа:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Управление", "ManageLogins") ]
-        </dd>
-        @*
-            Номера телефонов можно использовать в качестве второго проверочного фактора для системы двухфакторной проверки подлинности.
-             
-             В <a href="http://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
-                вы можете узнать, как настроить для этого приложения ASP.NET двухфакторную проверку подлинности с использованием SMS.
-             
-             Настроив двухфакторную проверку подлинности, раскомментируйте следующий блок.
-        *@
-        @*  
-            <dt>Номер телефона:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
-                {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
-                    }
-                }
-                else
-                {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
-                }
-            </dd>
-        *@
-        <dt>Двухфакторная проверка подлинности:</dt>
-        <dd>
-            <p>
-                Поставщики двухфакторной проверки подлинности не настроены. В <a href="http://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
-                вы можете узнать, как настроить двухфакторную проверку подлинности в этом приложении ASP.NET.
-            </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Включено
-                        <input type="submit" value="Отключить" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Отключено
-                        <input type="submit" value="Включить" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
-        </dd>
-    </dl>
+			]
+		</dd>
+		<dt>Внешние имена входа:</dt>
+		<dd>
+			@Model.Logins.Count [
+			@Html.ActionLink( "Управление", "ManageLogins" ) ]
+		</dd>
+		@*
+			Номера телефонов можно использовать в качестве второго проверочного фактора для системы двухфакторной проверки подлинности.
+
+			 В <a href="http://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
+				вы можете узнать, как настроить для этого приложения ASP.NET двухфакторную проверку подлинности с использованием SMS.
+
+			 Настроив двухфакторную проверку подлинности, раскомментируйте следующий блок.
+		*@
+		@*
+			<dt>Номер телефона:</dt>
+			<dd>
+				@(Model.PhoneNumber ?? "None")
+				@if (Model.PhoneNumber != null)
+				{
+					<br />
+					<text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+					using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+					{
+						@Html.AntiForgeryToken()
+						<text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+					}
+				}
+				else
+				{
+					<text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+				}
+			</dd>
+		*@
+		<dt>Двухфакторная проверка подлинности:</dt>
+		<dd>
+			<p>
+				Поставщики двухфакторной проверки подлинности не настроены. В <a href="http://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
+				вы можете узнать, как настроить двухфакторную проверку подлинности в этом приложении ASP.NET.
+			</p>
+			@*@if (Model.TwoFactor)
+				{
+					using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+					{
+						@Html.AntiForgeryToken()
+						<text>Включено
+						<input type="submit" value="Отключить" class="btn btn-link" />
+						</text>
+					}
+				}
+				else
+				{
+					using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+					{
+						@Html.AntiForgeryToken()
+						<text>Отключено
+						<input type="submit" value="Включить" class="btn btn-link" />
+						</text>
+					}
+				}*@
+		</dd>
+	</dl>
 </div>

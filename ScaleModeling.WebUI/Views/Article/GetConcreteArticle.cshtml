@@ -1,11 +1,16 @@
 ﻿@using ScaleModeling.Domain.Entities
-@model List<Article>
+@model Article
 
 @{
-	ViewBag.Title = Model.First().Title;
+	ViewBag.Title = Model.Title;
 }
 
 @section Links{
+	<li>
+		<div class="navigation-couple">
+			<img src="~/Content/Images/avatar.jpg" class="clickable-content img-circle logo-image" data-href="@Url.Action("Index", "Manage")" />
+		</div>
+	</li>
 	<li>
 		<div class="navigation-couple">
 			<a href="@Url.Action("Index", "Home")" class="glyphicon glyphicon-home">

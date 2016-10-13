@@ -1,18 +1,29 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
+	using (Html.BeginForm( "LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" } ))
+	{
+		@Html.AntiForgeryToken()
+		<li>
+			<div class="dropdown">
+				<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+					asda
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 1</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 2</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 3</a></li>
+					<li role="presentation" class="divider"></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
+				</ul>
+			</div>
+		</li>
+	}
 
-        <li>
-            @Html.ActionLink("Здравствуйте, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
-    }
 }
 else
 {
-        <li>@Html.ActionLink("Регистрация", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Выполнить вход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+	<li>@Html.ActionLink( "Регистрация", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" } )</li>
+	<li>@Html.ActionLink( "Выполнить вход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" } )</li>
 }

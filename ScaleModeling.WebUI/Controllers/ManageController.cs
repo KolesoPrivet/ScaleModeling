@@ -7,6 +7,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ScaleModeling.WebUI.Models;
+using ScaleModeling.Domain.Entities;
+using ScaleModeling.Domain.Abstract;
+using Ninject;
 
 namespace ScaleModeling.WebUI.Controllers
 {
@@ -15,15 +18,17 @@ namespace ScaleModeling.WebUI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IRepository<UserDetail, string> userDetailRepository;
 
-        public ManageController()
+        public ManageController(IRepository<UserDetail, string> userDetailRepositoryParam)
         {
+            this.userDetailRepository = userDetailRepositoryParam;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            this.UserManager = userManager;
+            this.SignInManager = signInManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -70,7 +75,10 @@ namespace ScaleModeling.WebUI.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync( userId ),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync( userId ),
                 Logins = await UserManager.GetLoginsAsync( userId ),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync( userId )
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync( userId ),
+
+                //TODO: await
+                UserDetails = userDetailRepository.Get.Where( ud => ud.Id == userId ).ToList()
             };
             return View( model );
         }

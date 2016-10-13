@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 
 namespace ScaleModeling.Domain.Abstract
 {
@@ -12,5 +13,7 @@ namespace ScaleModeling.Domain.Abstract
         /// Return T - entities.
         /// </summary>
         IQueryable<T> Get { get; }
+
+        Task<int> SaveChanges(); 
     }
 }

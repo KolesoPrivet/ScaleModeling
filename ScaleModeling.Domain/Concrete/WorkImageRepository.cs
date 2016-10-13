@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 
 using ScaleModeling.Domain.Abstract;
 using ScaleModeling.Domain.Entities;
@@ -16,6 +17,11 @@ namespace ScaleModeling.Domain.Concrete
             {
                 return context.WorkImages;
             }
+        }
+
+        public async Task<int> SaveChanges()
+        {
+            return await context.SaveChangesAsync();
         }
     }
 }

@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using ScaleModeling.Domain.Abstract;
 using ScaleModeling.Domain.Entities;
 using ScaleModeling.Domain.Concrete;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ScaleModeling.WebUI.Infrastructure
 {
@@ -63,12 +65,16 @@ namespace ScaleModeling.WebUI.Infrastructure
 
 
             //Users
+            kernel.Bind<IUserStore<User, string>>().To<UserStore<User, Role, string, UserLogin, UserRole, UserClaim>>();
+
             kernel.Bind<IRepository<UserDetail, string>>().To<UserDetailRepository>();
 
             kernel.Bind<IRepository<UserNotification, int>>().To<UserNotificationRepository>();
 
             kernel.Bind<IRepository<WishList, int>>().To<WishListRepository>();
 
+
+            kernel.Bind<UserManager<User>>().ToSelf();
 
             //Forum
             kernel.Bind<IRepository<ForumCategory, int>>().To<ForumCategoryRepository>();

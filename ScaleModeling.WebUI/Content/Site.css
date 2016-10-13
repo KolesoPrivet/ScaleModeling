@@ -44,7 +44,7 @@ a {
         background-color: #09C18B;
     }
 
-button.pull-right {
+.pull-right {
     margin-right: 8px;
 }
 
@@ -78,7 +78,6 @@ button.pull-right {
     margin-top: 4px;
     font-size: 15px;
     padding-top: 4px;
-    font-size: 100%;
     font-weight: bold;
     line-height: 1;
     color: #FFA4AD;
@@ -96,7 +95,6 @@ button.pull-right {
     margin-top: 4px;
     font-size: 15px;
     padding-top: 4px;
-    font-size: 100%;
     font-weight: bold;
     line-height: 1;
     color: #F2E784;
@@ -126,7 +124,6 @@ span.glyphicon {
     margin-left: 8px;
     font-size: 15px;
     padding-top: 5px;
-    font-size: 100%;
     font-weight: bold;
     line-height: 1;
     color: #FFA4AD;
@@ -163,7 +160,7 @@ span.glyphicon {
     margin-bottom: 10px;
 }
 
-div.container {
+.container {
     max-width: 290px;
     width: 96%;
     padding-left: 0;
@@ -172,6 +169,23 @@ div.container {
 
 .smallImages {
     width: 100%;
+    height: auto;
+    border: 1px solid #e3e3e3;
+    background: #fff;
+    margin-bottom: 10px;
+}
+
+.logo-image {
+    width: 60%;
+    height: auto;
+    border: 1px solid #e3e3e3;
+    background: #fff;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.smallestImages {
+    width: 10%;
     height: auto;
     border: 1px solid #e3e3e3;
     background: #fff;
@@ -260,7 +274,6 @@ header {
             padding: 0;
             list-style: none;
             display: inline-block;
-            *display: inline; /* ie7 */
         }
 
             .nav-center ul li a {

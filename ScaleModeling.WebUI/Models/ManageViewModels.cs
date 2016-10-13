@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using ScaleModeling.Domain.Entities;
 
 namespace ScaleModeling.WebUI.Models
 {
@@ -12,6 +13,8 @@ namespace ScaleModeling.WebUI.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+
+        public IEnumerable<UserDetail> UserDetails { get; set; }
     }
 
     public class ManageLoginsViewModel

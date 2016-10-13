@@ -22,7 +22,7 @@ namespace ScaleModeling.WebUI.Controllers
 
         public ViewResult GetConcreteProduct(int id)
         {
-            return View( productRepository.Get.Where( p => p.Id == id ).ToList() );
+            return View( productRepository.Get.Where( p => p.Id == id ).AsEnumerable().First() );
         }
     }
 }

@@ -12,6 +12,7 @@ using ScaleModeling.WebUI.Models;
 using ScaleModeling.Domain.Entities;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using Ninject;
 
 namespace ScaleModeling.WebUI.Controllers
 {

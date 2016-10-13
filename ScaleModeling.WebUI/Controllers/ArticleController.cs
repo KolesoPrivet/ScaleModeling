@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using System.Threading.Tasks;
 
 using ScaleModeling.Domain.Abstract;
 using ScaleModeling.Domain.Entities;
@@ -17,13 +18,23 @@ namespace ScaleModeling.WebUI.Controllers
 
         public ViewResult Index()
         {
-            return View(articleRepository.Get.ToList());
+            return View( articleRepository.Get.ToList() );
         }
 
-        public ViewResult GetConcreteArticle(int id)
+        public async Task<ViewResult> GetConcreteArticle(int id = 0)
         {
-            return View( articleRepository.Get.Where( a => a.Id == id ).ToList() );
-        }
+            if (id == 0)
+            {
+                return View( "Index", articleRepository.Get.ToList() );
+            }
 
+            Article currentArticle = articleRepository.Get.Where( a => a.Id == id ).AsEnumerable().First();
+
+            currentArticle.Viewed += 1;
+
+            await Task.Factory.StartNew( () => articleRepository.SaveChanges() );
+
+            return View( currentArticle );
+        }
     }
 }
