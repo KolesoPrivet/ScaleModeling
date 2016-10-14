@@ -9,9 +9,9 @@ namespace ScaleModeling.WebUI.Controllers
 {
     public class EventController : Controller
     {
-        private IRepository<Event, int> eventRepository;
+        private IRepository<Event> eventRepository;
 
-        public EventController(IRepository<Event, int> eventRepositoryParam)
+        public EventController(IRepository<Event> eventRepositoryParam)
         {
             this.eventRepository = eventRepositoryParam;
         }
@@ -30,9 +30,9 @@ namespace ScaleModeling.WebUI.Controllers
 
             Event currentEvent = eventRepository.Get.Where( e => e.Id == id ).AsEnumerable().First();
 
-            currentEvent.Viewed += 100;
+            currentEvent.Viewed += 1;
 
-            await Task.Factory.StartNew( () => eventRepository.SaveChanges() ); // не апдейтится
+            await Task.Factory.StartNew( () => eventRepository.SaveChanges() );
 
             return View( currentEvent );
         }

@@ -2,7 +2,7 @@
 
 namespace ScaleModeling.Domain.Entities
 {
-    public class UserLogin : IdentityUserLogin
+    public class UserLogin : IdentityUserLogin<int>
     {
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ScaleModeling.Domain.Entities
 {
-    public class Role : IdentityRole<string, UserRole>
+    public class Role : IdentityRole<int, UserRole>
     {
     }
 }

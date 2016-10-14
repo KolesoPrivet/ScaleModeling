@@ -20,9 +20,10 @@ namespace ScaleModeling.Domain.Entities
 
         public DateTime CreationDate { get; set; }
 
-        public string AuthorId { get; set; }
+        public int AuthorId { get; set; }
         public virtual User Author { get; set; }
 
+        public virtual List<VideoLiked> Likes { get; set; }
         public virtual List<VideoComment> Comments { get; set; }
     }
 }

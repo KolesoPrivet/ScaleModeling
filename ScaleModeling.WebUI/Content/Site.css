@@ -192,9 +192,9 @@ span.glyphicon {
     margin-bottom: 10px;
 }
 
-    .smallImages:hover {
-        background: #ffffff;
-    }
+.smallImages:hover {
+    background: #ffffff;
+}
 
 /* END SHOP */
 
@@ -289,6 +289,45 @@ footer {
     border-top: 1px solid #e3e3e3;
 }
 /* END FOOTER*/
+
+
+
+
+/* CONCRETE ARTICLE */
+.article-title-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.article-body-container {
+    font-size: 18px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.article-footer-container {
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.article-title {
+    font-size: 25px;
+    color: #393F4C;
+    padding-top: 12px;
+}
+
+.article-like{
+    margin-right: 0;
+}
+
+.article-footer-container span.glyphicon{
+    margin-right: 0;
+}
+/* END CONCRETE ARTICLE */
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

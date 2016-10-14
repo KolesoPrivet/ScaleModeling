@@ -9,9 +9,9 @@ namespace ScaleModeling.WebUI.Controllers
 {
     public class WorkController : Controller
     {
-        private IRepository<Work, int> workRepository;
+        private IRepository<Work> workRepository;
 
-        public WorkController(IRepository<Work, int> workRepositoryParam)
+        public WorkController(IRepository<Work> workRepositoryParam)
         {
             this.workRepository = workRepositoryParam;
         }

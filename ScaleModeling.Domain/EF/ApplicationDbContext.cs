@@ -5,7 +5,7 @@ using ScaleModeling.Domain.Entities;
 
 namespace ScaleModeling.Domain.EF
 {
-    public class ApplicationDbContext : IdentityDbContext<User, Role, string, UserLogin, UserRole, UserClaim>
+    public class ApplicationDbContext : IdentityDbContext<User, Role, int, UserLogin, UserRole, UserClaim>
     {
         public ApplicationDbContext()
             : base( "ScaleModeling_Content" )
@@ -29,6 +29,10 @@ namespace ScaleModeling.Domain.EF
             modelBuilder.Entity<UserRole>().ToTable( "UserRoles" );
             modelBuilder.Entity<UserClaim>().ToTable( "UserClaims" );
             modelBuilder.Entity<UserLogin>().ToTable( "UserLogins" );
+
+            modelBuilder.Entity<WorkLiked>().ToTable( "WorkLiked" );
+            modelBuilder.Entity<ArticleLiked>().ToTable( "ArticleLiked" );
+            modelBuilder.Entity<VideoLiked>().ToTable( "VideoLiked" );
         }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<UserNotification> UserNotifications { get; set; }
@@ -36,6 +40,7 @@ namespace ScaleModeling.Domain.EF
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<ArticleComment> ArticleComments { get; set; }
         public virtual DbSet<ArticleImage> ArticleImages { get; set; }
+        public virtual DbSet<ArticleLiked> ArticleLikeds { get; set; }
 
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<EventComment> EventComments { get; set; }
@@ -44,9 +49,11 @@ namespace ScaleModeling.Domain.EF
         public virtual DbSet<Work> Works { get; set; }
         public virtual DbSet<WorkComment> WorkComments { get; set; }
         public virtual DbSet<WorkImage> WorkImages { get; set; }
+        public virtual DbSet<WorkLiked> WorkLikeds { get; set; }
 
         public virtual DbSet<VideoContent> Videos { get; set; }
         public virtual DbSet<VideoComment> VideoComments { get; set; }
+        public virtual DbSet<VideoLiked> VideoLikeds { get; set; }
 
         public virtual DbSet<ForumTopic> ForumTopics { get; set; }
         public virtual DbSet<ForumCategory> ForumCategories { get; set; }

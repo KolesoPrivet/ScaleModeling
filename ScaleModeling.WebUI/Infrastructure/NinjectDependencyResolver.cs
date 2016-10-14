@@ -35,65 +35,65 @@ namespace ScaleModeling.WebUI.Infrastructure
         private void AddBindings()
         {
             //Events
-            kernel.Bind<IRepository<Event, int>>().To<EventRepository>();
+            kernel.Bind<IRepository<Event>>().To<EventRepository>();
 
-            kernel.Bind<IRepository<EventComment, int>>().To<EventCommentRepository>();
+            kernel.Bind<IRepository<EventComment>>().To<EventCommentRepository>();
 
-            kernel.Bind<IRepository<EventImage, int>>().To<EventImageRepository>();
+            kernel.Bind<IRepository<EventImage>>().To<EventImageRepository>();
 
 
             //Articles
-            kernel.Bind<IRepository<Article, int>>().To<ArticleRepository>();
+            kernel.Bind<IRepository<Article>>().To<ArticleRepository>();
 
-            kernel.Bind<IRepository<ArticleComment, int>>().To<ArticleCommentRepository>();
+            kernel.Bind<IRepository<ArticleComment>>().To<ArticleCommentRepository>();
 
-            kernel.Bind<IRepository<ArticleImage, int>>().To<ArticleImageRepository>();
+            kernel.Bind<IRepository<ArticleImage>>().To<ArticleImageRepository>();
 
 
             //Works
-            kernel.Bind<IRepository<Work, int>>().To<WorkRepository>();
+            kernel.Bind<IRepository<Work>>().To<WorkRepository>();
 
-            kernel.Bind<IRepository<WorkComment, int>>().To<WorkCommentRepository>();
+            kernel.Bind<IRepository<WorkComment>>().To<WorkCommentRepository>();
 
-            kernel.Bind<IRepository<WorkImage, int>>().To<WorkImageRepository>();
+            kernel.Bind<IRepository<WorkImage>>().To<WorkImageRepository>();
 
 
             //Videos
-            kernel.Bind<IRepository<VideoContent, int>>().To<VideoContentRepository>();
+            kernel.Bind<IRepository<VideoContent>>().To<VideoContentRepository>();
 
-            kernel.Bind<IRepository<VideoComment, int>>().To<VideoCommentRepository>();
+            kernel.Bind<IRepository<VideoComment>>().To<VideoCommentRepository>();
 
 
             //Users
-            kernel.Bind<IUserStore<User, string>>().To<UserStore<User, Role, string, UserLogin, UserRole, UserClaim>>();
+            kernel.Bind<IUserStore<User, int>>().To<UserStore<User, Role, int, UserLogin, UserRole, UserClaim>>();
 
-            kernel.Bind<IRepository<UserDetail, string>>().To<UserDetailRepository>();
+            kernel.Bind<IRepository<UserDetail>>().To<UserDetailRepository>();
 
-            kernel.Bind<IRepository<UserNotification, int>>().To<UserNotificationRepository>();
+            kernel.Bind<IRepository<UserNotification>>().To<UserNotificationRepository>();
 
-            kernel.Bind<IRepository<WishList, int>>().To<WishListRepository>();
+            kernel.Bind<IRepository<WishList>>().To<WishListRepository>();
 
 
-            kernel.Bind<UserManager<User>>().ToSelf();
+            kernel.Bind<UserManager<User, int>>().ToSelf();
 
             //Forum
-            kernel.Bind<IRepository<ForumCategory, int>>().To<ForumCategoryRepository>();
+            kernel.Bind<IRepository<ForumCategory>>().To<ForumCategoryRepository>();
 
-            kernel.Bind<IRepository<ForumTopic, int>>().To<ForumTopicRepository>();
+            kernel.Bind<IRepository<ForumTopic>>().To<ForumTopicRepository>();
 
-            kernel.Bind<IRepository<ForumImage, int>>().To<ForumImageRepository>();
+            kernel.Bind<IRepository<ForumImage>>().To<ForumImageRepository>();
 
-            kernel.Bind<IRepository<ForumComment, int>>().To<ForumCommentRepository>();
+            kernel.Bind<IRepository<ForumComment>>().To<ForumCommentRepository>();
 
 
             //Products
-            kernel.Bind<IRepository<Product, int>>().To<ProductRepository>();
+            kernel.Bind<IRepository<Product>>().To<ProductRepository>();
 
-            kernel.Bind<IRepository<ProductCategory, int>>().To<ProductCategoryRepository>();
+            kernel.Bind<IRepository<ProductCategory>>().To<ProductCategoryRepository>();
 
-            kernel.Bind<IRepository<ProductComment, int>>().To<ProductCommentRepository>();
+            kernel.Bind<IRepository<ProductComment>>().To<ProductCommentRepository>();
 
-            kernel.Bind<IRepository<ProductImage, int>>().To<ProductImageRepository>();
+            kernel.Bind<IRepository<ProductImage>>().To<ProductImageRepository>();
         }
     }
 }

@@ -8,7 +8,7 @@ using ScaleModeling.Domain.EF;
 
 namespace ScaleModeling.Domain.Concrete
 {
-    public class VideoContentRepository : IRepository<VideoContent, int>
+    public class VideoContentRepository : IRepository<VideoContent>
     {
         private ApplicationDbContext context = new ApplicationDbContext();
 

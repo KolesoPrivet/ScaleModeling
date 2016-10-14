@@ -5,10 +5,9 @@ using ScaleModeling.Domain.Abstract;
 using ScaleModeling.Domain.Entities;
 using ScaleModeling.Domain.EF;
 
-
 namespace ScaleModeling.Domain.Concrete
 {
-    public class EventCommentRepository : IRepository<EventComment, int>
+    public class EventCommentRepository : IRepository<EventComment>
     {
         private ApplicationDbContext context = new ApplicationDbContext();
 

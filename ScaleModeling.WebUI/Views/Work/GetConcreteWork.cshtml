@@ -63,6 +63,34 @@
 	</li>
 }
 
-<div class="row">
-	qweqw
+<div class="row article-title-container">
+	<div class="container pull-left">
+		<span class="label label-date">
+			<span class="glyphicon glyphicon-time"></span>
+			<span id="viewed">@Model.CreationDate.ToString().Substring( 0, 10 )</span>
+		</span>
+		<span class="label label-author">
+			<span class="glyphicon glyphicon-user"></span>
+			<span id="viewed">@Model.Author.UserName</span>
+		</span>
+		<span class="label label-viewed">
+			<span class="glyphicon glyphicon-eye-open"></span>
+			<span id="viewed">@Model.Viewed</span>
+		</span>
+		<span class="label label-viewed">
+			<span class="glyphicon glyphicon-thumbs-up"></span>
+			<span id="viewed">@Model.Likes.Count</span>
+		</span>
+		<span class="label label-viewed">
+			<span class="glyphicon glyphicon-comment"></span>
+			<span id="viewed">@Model.Comments.Count</span>
+		</span>
+	</div>
+	<div class="pull-right">
+		<div class="article-title">
+			<strong>
+				@Model.Title
+			</strong>
+		</div>
+	</div>
 </div>

@@ -6,16 +6,17 @@
 		@Html.AntiForgeryToken()
 		<li>
 			<div class="dropdown">
-				<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-					asda
+				<button class="btn btn-primary dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+					Профиль
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 1</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 2</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 3</a></li>
+					<li role="presentation" class="dropdown-header">asdawfasf</li>
+					<li role="menuitem"><a role="menuitem" tabindex="-1" href="@Url.Action("Index", "Manage")">Управление</a></li>
+					<li role="menuitem"><a role="menuitem" tabindex="-1" href="#">Menu item 2</a></li>
+					<li role="menuitem"><a role="menuitem" tabindex="-1" href="#">Menu item 3</a></li>
 					<li role="presentation" class="divider"></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
+					<li role="menuitem"><a role="menuitem" tabindex="-1" href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
 				</ul>
 			</div>
 		</li>

@@ -8,7 +8,7 @@ using ScaleModeling.Domain.EF;
 
 namespace ScaleModeling.Domain.Concrete
 {
-    public class UserNotificationRepository : IRepository<UserNotification, int>
+    public class UserNotificationRepository : IRepository<UserNotification>
     {
         private ApplicationDbContext context = new ApplicationDbContext();
 

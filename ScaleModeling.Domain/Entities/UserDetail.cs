@@ -5,11 +5,11 @@ using ScaleModeling.Domain.Abstract;
 
 namespace ScaleModeling.Domain.Entities
 {
-    public class UserDetail : IEntity<string>
+    public class UserDetail : IEntity
     {
         [Key]
         [ForeignKey("User")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public int Rating { get; set; }
 

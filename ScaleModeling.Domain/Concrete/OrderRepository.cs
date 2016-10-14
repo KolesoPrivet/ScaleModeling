@@ -5,10 +5,9 @@ using ScaleModeling.Domain.Abstract;
 using ScaleModeling.Domain.Entities;
 using ScaleModeling.Domain.EF;
 
-
 namespace ScaleModeling.Domain.Concrete
 {
-    public class OrderRepository : IRepository<Order, int>
+    public class OrderRepository : IRepository<Order>
     {
         private ApplicationDbContext context = new ApplicationDbContext();
 

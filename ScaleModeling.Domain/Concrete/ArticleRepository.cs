@@ -5,10 +5,9 @@ using ScaleModeling.Domain.Abstract;
 using ScaleModeling.Domain.Entities;
 using ScaleModeling.Domain.EF;
 
-
 namespace ScaleModeling.Domain.Concrete
 {
-    public class ArticleRepository : IRepository<Article, int>
+    public class ArticleRepository : IRepository<Article>
     {
         private ApplicationDbContext context = new ApplicationDbContext();
 

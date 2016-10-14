@@ -4,11 +4,10 @@ using System.Threading.Tasks;
 using ScaleModeling.Domain.Abstract;
 using ScaleModeling.Domain.Entities;
 using ScaleModeling.Domain.EF;
-using System.Threading.Tasks;
 
 namespace ScaleModeling.Domain.Concrete
 {
-    public class EventImageRepository : IRepository<EventImage, int>
+    public class EventImageRepository : IRepository<EventImage>
     {
         private ApplicationDbContext context = new ApplicationDbContext();
 

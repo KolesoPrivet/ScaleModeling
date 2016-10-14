@@ -156,7 +156,7 @@ namespace ScaleModeling.WebUI.Controllers
             if (ModelState.IsValid)
             {
 
-                var user = new User { UserName = model.Login, Email = model.Email, Id = Guid.NewGuid().ToString() };
+                var user = new User { UserName = model.Login, Email = model.Email };
                 var result = await UserManager.CreateAsync( user, model.Password );
 
                 if (result.Succeeded)
@@ -181,7 +181,7 @@ namespace ScaleModeling.WebUI.Controllers
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public async Task<ActionResult> ConfirmEmail(int userId, string code)
         {
             if (code == null)
             {
@@ -294,6 +294,11 @@ namespace ScaleModeling.WebUI.Controllers
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
+
+            if(userId == default(int))
+            {
+                return View( "Error" );
+            }
 
             var userFactors = await UserManager.GetValidTwoFactorProvidersAsync( userId );
             var factorOptions = userFactors.Select( purpose => new SelectListItem { Text = purpose, Value = purpose } ).ToList();

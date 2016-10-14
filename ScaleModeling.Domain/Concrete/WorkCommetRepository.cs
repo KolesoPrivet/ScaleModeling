@@ -7,7 +7,7 @@ using ScaleModeling.Domain.EF;
 
 namespace ScaleModeling.Domain.Concrete
 {
-    public class WorkCommentRepository : IRepository<WorkComment, int>
+    public class WorkCommentRepository : IRepository<WorkComment>
     {
         private ApplicationDbContext context = new ApplicationDbContext();
 

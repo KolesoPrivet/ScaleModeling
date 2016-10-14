@@ -9,9 +9,9 @@ namespace ScaleModeling.WebUI.Controllers
 {
     public class ArticleController : Controller
     {
-        private IRepository<Article, int> articleRepository;
+        private IRepository<Article> articleRepository;
 
-        public ArticleController(IRepository<Article, int> articleRepositoryParam)
+        public ArticleController(IRepository<Article> articleRepositoryParam)
         {
             this.articleRepository = articleRepositoryParam;
         }
@@ -32,7 +32,7 @@ namespace ScaleModeling.WebUI.Controllers
 
             currentArticle.Viewed += 1;
 
-            await Task.Factory.StartNew( () => articleRepository.SaveChanges() );
+            await articleRepository.SaveChanges();
 
             return View( currentArticle );
         }

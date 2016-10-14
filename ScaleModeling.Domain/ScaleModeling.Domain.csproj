@@ -114,6 +114,7 @@
     <Compile Include="Entities\Article.cs" />
     <Compile Include="Entities\ArticleComment.cs" />
     <Compile Include="Entities\ArticleImage.cs" />
+    <Compile Include="Entities\ArticleLiked.cs" />
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\EventComment.cs" />
     <Compile Include="Entities\EventImage.cs" />
@@ -135,10 +136,12 @@
     <Compile Include="Entities\UserRole.cs" />
     <Compile Include="Entities\VideoComment.cs" />
     <Compile Include="Entities\VideoContent.cs" />
+    <Compile Include="Entities\VideoLiked.cs" />
     <Compile Include="Entities\WishList.cs" />
     <Compile Include="Entities\Work.cs" />
     <Compile Include="Entities\WorkComment.cs" />
     <Compile Include="Entities\WorkImage.cs" />
+    <Compile Include="Entities\WorkLiked.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -93,7 +93,7 @@
 							</span>
 							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-thumbs-up"></span>
-								<span id="viewed">@article.Rating</span>
+								<span id="viewed">@article.Likes.Count</span>
 							</span>
 							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-comment"></span>
@@ -190,7 +190,7 @@
 								</span>
 								<span class="label label-viewed">
 									<span class="glyphicon glyphicon-thumbs-up"></span>
-									<span id="viewed">@work.Rating</span>
+									<span id="viewed">@work.Likes.Count</span>
 								</span>
 								<span class="label label-viewed">
 									<span class="glyphicon glyphicon-comment"></span>
@@ -233,7 +233,7 @@
 								</span>
 								<span class="label label-viewed">
 									<span class="glyphicon glyphicon-star"></span>
-									<span id="viewed">@product.Rating</span>
+									<span id="viewed">@product.ProductComments.Sum(pc => pc.Rating).ToString()</span>
 								</span>
 								<span class="label label-viewed">
 									<span class="glyphicon glyphicon-comment"></span>

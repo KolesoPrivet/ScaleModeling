@@ -9,9 +9,9 @@ namespace ScaleModeling.WebUI.Controllers
 {
     public class ForumController : Controller
     {
-        private IRepository<ForumTopic, int> forumRepository;
+        private IRepository<ForumTopic> forumRepository;
 
-        public ForumController(IRepository<ForumTopic, int> forumRepositoryParam)
+        public ForumController(IRepository<ForumTopic> forumRepositoryParam)
         {
             this.forumRepository = forumRepositoryParam;
         }

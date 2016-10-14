@@ -10,6 +10,7 @@ namespace ScaleModeling.Domain.Entities
     {
         public int Id { get; set; }
 
+        [Required]
         [StringLength( 100, MinimumLength = 10, ErrorMessage = "Количество символов заголовка должно быть в диапазоне от 10 до 100" )]
         public string Title { get; set; }
 
@@ -19,11 +20,10 @@ namespace ScaleModeling.Domain.Entities
 
         public DateTime CreationDate { get; set; }
 
-        public int Rating { get; set; }
-
-        public string AuthorId { get; set; }
+        public int AuthorId { get; set; }
         public virtual User Author { get; set; }
 
+        public virtual List<WorkLiked> Likes { get; set; }
         public virtual List<WorkImage> Images { get; set; }
         public virtual List<WorkComment> Comments { get; set; }
     }

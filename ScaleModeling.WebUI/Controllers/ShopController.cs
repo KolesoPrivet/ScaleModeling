@@ -8,9 +8,9 @@ namespace ScaleModeling.WebUI.Controllers
 {
     public class ShopController : Controller
     {
-        private IRepository<Product, int> productRepository;
+        private IRepository<Product> productRepository;
 
-        public ShopController(IRepository<Product, int> productRepositoryParam)
+        public ShopController(IRepository<Product> productRepositoryParam)
         {
             this.productRepository = productRepositoryParam;
         }
