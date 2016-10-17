@@ -25,6 +25,7 @@ namespace ScaleModeling.WebUI.Controllers
             {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
+
             private set
             {
                 _userManager = value;
@@ -34,26 +35,32 @@ namespace ScaleModeling.WebUI.Controllers
         public ArticleController(IRepository<Article> articleRepositoryParam, IRepository<ArticleComment> articleCommentsRepositoryParam)
         {
             this.articleRepository = articleRepositoryParam;
+
             this.articleCommentsRepository = articleCommentsRepositoryParam;
         }
 
         public ViewResult Index()
         {
-            return View( articleRepository.Get.ToList() );
+            return View( articleRepository.GetAll.ToList() );
         }
 
         public async Task<ViewResult> GetConcreteArticle(int id = 0)
         {
             if (id == 0)
             {
-                return View( "Index", articleRepository.Get.ToList() );
+                return View( "Index", articleRepository.GetAll.ToList() );
             }
 
-            Article currentArticle = articleRepository.Get.Where( a => a.Id == id ).AsEnumerable().First();
+
+            Article currentArticle = articleRepository.GetAll.Where( a => a.Id == id ).AsEnumerable().First();
 
             currentArticle.Viewed += 1;
 
+
+            await articleRepository.Update( currentArticle );
+
             await articleRepository.SaveChangesAsync();
+
 
             return View( currentArticle );
         }
@@ -65,10 +72,22 @@ namespace ScaleModeling.WebUI.Controllers
                 throw new Exception( "Article id = 0, article is undefined!" );
             }
 
-            List<ArticleComment> articleComments = articleCommentsRepository.Get.Where(ac => ac.ArticleId == id).ToList();
+
+            List<ArticleComment> articleComments = articleCommentsRepository.GetAll.Where(ac => ac.ArticleId == id).ToList();
+
 
             return PartialView( articleComments );
         }
+
+        //public PartialViewResult CreateComment(int id = 0)
+        //{
+        //    if(id == 0)
+        //    {
+        //        throw new Exception( "Article id = 0, article is undefined!" );
+        //    }
+
+            
+        //}
 
         public async Task<int> AddLike(int id = 0)
         {
@@ -77,22 +96,26 @@ namespace ScaleModeling.WebUI.Controllers
                 throw new Exception( "Article id = 0, article is undefined!" );
             }
 
-            Article currentArticle = articleRepository.Get.Where( a => a.Id == id ).AsEnumerable().First();
+
+            Article currentArticle = await articleRepository.GetEntityById(id);
 
             User userLiked = await UserManager.FindByNameAsync( User.Identity.Name );
 
             ArticleLiked currentLike = new ArticleLiked { ArticleId = currentArticle.Id, UserId = userLiked.Id, LikedDate = DateTime.Now };
+
 
             if (currentArticle.Likes.Any(a => a.ArticleId == currentLike.ArticleId && a.UserId == currentLike.UserId))
             {
                 currentArticle.Likes.RemoveAll( a => a.ArticleId == currentLike.ArticleId && a.UserId == currentLike.UserId );
                 await articleRepository.SaveChangesAsync();
             }
+
             else
             {
                 currentArticle.Likes.Add( currentLike );
                 await articleRepository.SaveChangesAsync();
             }
+
 
             return currentArticle.Likes.Count();
         }

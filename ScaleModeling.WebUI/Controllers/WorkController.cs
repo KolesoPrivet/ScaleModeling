@@ -18,21 +18,26 @@ namespace ScaleModeling.WebUI.Controllers
 
         public ActionResult Index()
         {
-            return View( workRepository.Get.ToList() );
+            return View( workRepository.GetAll.ToList() );
         }
 
         public async Task<ViewResult> GetConcreteWork(int id = 0)
         {
             if (id == 0)
             {
-                return View( "Index", workRepository.Get.ToList() );
+                return View( "Index", workRepository.GetAll.ToList() );
             }
 
-            Work currentWork = workRepository.Get.Where( w => w.Id == id ).AsEnumerable().First();
+
+            Work currentWork = workRepository.GetAll.Where( w => w.Id == id ).AsEnumerable().First();
 
             currentWork.Viewed += 1;
 
-            await Task.Factory.StartNew( () => workRepository.SaveChangesAsync() );
+
+            await workRepository.Update( currentWork );
+
+            await workRepository.SaveChangesAsync();
+
 
             return View( currentWork );
         }

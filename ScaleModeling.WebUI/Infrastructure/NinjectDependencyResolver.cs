@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 using ScaleModeling.Domain.Abstract;
 using ScaleModeling.Domain.Entities;
-using ScaleModeling.Domain.Concrete;
+using ScaleModeling.Domain.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 

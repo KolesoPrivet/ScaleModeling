@@ -17,12 +17,12 @@ namespace ScaleModeling.WebUI.Controllers
 
         public ViewResult Index()
         {
-            return View(productRepository.Get.ToList());
+            return View(productRepository.GetAll.ToList());
         }
 
         public ViewResult GetConcreteProduct(int id)
         {
-            return View( productRepository.Get.Where( p => p.Id == id ).AsEnumerable().First() );
+            return View( productRepository.GetAll.Where( p => p.Id == id ).AsEnumerable().First() );
         }
     }
 }

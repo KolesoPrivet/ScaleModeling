@@ -9,30 +9,35 @@ namespace ScaleModeling.WebUI.Controllers
 {
     public class ForumController : Controller
     {
-        private IRepository<ForumTopic> forumRepository;
+        private IRepository<ForumTopic> forumTopicRepository;
 
-        public ForumController(IRepository<ForumTopic> forumRepositoryParam)
+        public ForumController(IRepository<ForumTopic> forumTopicRepositoryParam)
         {
-            this.forumRepository = forumRepositoryParam;
+            this.forumTopicRepository = forumTopicRepositoryParam;
         }
 
         public ActionResult Index()
         {
-            return View( forumRepository.Get.ToList() );
+            return View( forumTopicRepository.GetAll.ToList() );
         }
 
         public async Task<ViewResult> GetConcreteTopic(int id = 0)
         {
             if (id == 0)
             {
-                return View( "Index", forumRepository.Get.ToList() );
+                return View( "Index", forumTopicRepository.GetAll.ToList() );
             }
 
-            ForumTopic currentTopic = forumRepository.Get.Where( ft => ft.Id == id ).AsEnumerable().First();
+
+            ForumTopic currentTopic = forumTopicRepository.GetAll.Where( ft => ft.Id == id ).AsEnumerable().First();
 
             currentTopic.Viewed += 1;
 
-            await Task.Factory.StartNew( () => forumRepository.SaveChangesAsync() );
+
+            await forumTopicRepository.Update( currentTopic );
+
+            await forumTopicRepository.SaveChangesAsync();
+
 
             return View( currentTopic );
         }

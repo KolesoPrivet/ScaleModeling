@@ -78,7 +78,7 @@ namespace ScaleModeling.WebUI.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync( User.Identity.GetUserId() ),
 
                 //TODO: await
-                UserDetails = userDetailRepository.Get.Where( ud => ud.Id == userId ).ToList()
+                UserDetails = userDetailRepository.GetAll.Where( ud => ud.Id == userId ).ToList()
             };
             return View( model );
         }

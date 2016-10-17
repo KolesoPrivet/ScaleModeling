@@ -23,5 +23,10 @@ namespace ScaleModeling.Domain.Entities
 
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
+
+        public static implicit operator Order(Article v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

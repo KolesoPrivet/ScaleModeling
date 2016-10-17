@@ -18,21 +18,26 @@ namespace ScaleModeling.WebUI.Controllers
 
         public ViewResult Index()
         {
-            return View( eventRepository.Get.ToList() );
+            return View( eventRepository.GetAll.ToList() );
         }
 
         public async Task<ViewResult> GetConcreteEvent(int id = 0)
         {
             if (id == 0)
             {
-                return View( "Index", eventRepository.Get.ToList() );
+                return View( "Index", eventRepository.GetAll.ToList() );
             }
 
-            Event currentEvent = eventRepository.Get.Where( e => e.Id == id ).AsEnumerable().First();
+
+            Event currentEvent = eventRepository.GetAll.Where( e => e.Id == id ).AsEnumerable().First();
 
             currentEvent.Viewed += 1;
 
-            await Task.Factory.StartNew( () => eventRepository.SaveChangesAsync() );
+
+            await eventRepository.Update( currentEvent );
+
+            await eventRepository.SaveChangesAsync();
+
 
             return View( currentEvent );
         }
