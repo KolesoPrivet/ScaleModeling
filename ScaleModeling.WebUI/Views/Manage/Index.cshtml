@@ -69,14 +69,7 @@
 		<dt>Логин:</dt>
 		<dd>
 			@{
-				if (Model.UserDetails.Count() > 0)
-				{
-					<p>@Model.UserDetails.First().User.UserName.ToString()</p>
-				}
-				else
-				{
-					<p>Пусто</p>
-				}
+				<p>@User.Identity.Name</p>
 			}
 		</dd>
 		<dt>Имя:</dt>

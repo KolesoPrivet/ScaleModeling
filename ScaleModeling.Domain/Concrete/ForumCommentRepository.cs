@@ -19,9 +19,9 @@ namespace ScaleModeling.Domain.Concrete
             }
         }
 
-        public async Task<int> SaveChanges()
+        public async Task SaveChangesAsync()
         {
-            return await context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
     }
 }

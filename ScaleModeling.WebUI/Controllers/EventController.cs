@@ -32,7 +32,7 @@ namespace ScaleModeling.WebUI.Controllers
 
             currentEvent.Viewed += 1;
 
-            await Task.Factory.StartNew( () => eventRepository.SaveChanges() );
+            await Task.Factory.StartNew( () => eventRepository.SaveChangesAsync() );
 
             return View( currentEvent );
         }

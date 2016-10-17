@@ -32,7 +32,7 @@ namespace ScaleModeling.WebUI.Controllers
 
             currentTopic.Viewed += 1;
 
-            await Task.Factory.StartNew( () => forumRepository.SaveChanges() );
+            await Task.Factory.StartNew( () => forumRepository.SaveChangesAsync() );
 
             return View( currentTopic );
         }

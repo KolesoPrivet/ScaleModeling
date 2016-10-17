@@ -32,7 +32,7 @@ namespace ScaleModeling.WebUI.Controllers
 
             currentWork.Viewed += 1;
 
-            await Task.Factory.StartNew( () => workRepository.SaveChanges() );
+            await Task.Factory.StartNew( () => workRepository.SaveChangesAsync() );
 
             return View( currentWork );
         }

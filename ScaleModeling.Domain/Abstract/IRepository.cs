@@ -14,6 +14,6 @@ namespace ScaleModeling.Domain.Abstract
         /// </summary>
         IQueryable<T> Get { get; }
 
-        Task<int> SaveChanges(); 
+        Task SaveChangesAsync(); 
     }
 }

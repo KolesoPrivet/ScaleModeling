@@ -1,4 +1,5 @@
-﻿$(document).ready(function ($) {
+﻿// Clickable content handler
+$(document).ready(function ($) {
     $(".clickable-content").click(function () {
         window.location = $(this).data("href");
     });

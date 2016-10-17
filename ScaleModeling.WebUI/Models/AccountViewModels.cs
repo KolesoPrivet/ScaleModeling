@@ -49,9 +49,8 @@ namespace ScaleModeling.WebUI.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Адрес электронной почты")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Логин")]
+        public string Login { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

@@ -3,6 +3,16 @@
 
 @{
 	ViewBag.Title = Model.Title;
+
+	AjaxOptions ajaxOptionsComments = new AjaxOptions
+	{
+		UpdateTargetId = "comments"
+	};
+
+	AjaxOptions ajaxOptionsLikes = new AjaxOptions
+	{
+		UpdateTargetId = "like-count"
+	};
 }
 
 @section Links{
@@ -64,73 +74,58 @@
 	</li>
 }
 
-<div class="row article-title-container">
+<div class="row title-container">
 	<div class="container pull-left">
 		<span class="label label-date">
 			<span class="glyphicon glyphicon-time"></span>
-			<span id="viewed">@Model.CreationDate.ToString().Substring( 0, 10 )</span>
+			<span class="viewed">@Model.CreationDate.ToString().Substring( 0, 10 )</span>
 		</span>
 		<span class="label label-author">
 			<span class="glyphicon glyphicon-user"></span>
-			<span id="viewed">@Model.Author.UserName</span>
+			<span class="viewed">@Model.Author.UserName</span>
 		</span>
 		<span class="label label-viewed">
 			<span class="glyphicon glyphicon-eye-open"></span>
-			<span id="viewed">@Model.Viewed</span>
+			<span class="viewed">@Model.Viewed</span>
 		</span>
 		<span class="label label-viewed">
 			<span class="glyphicon glyphicon-thumbs-up"></span>
-			<span id="viewed">@Model.Likes.Count</span>
+			<span class="viewed">@Model.Likes.Count</span>
 		</span>
 		<span class="label label-viewed">
 			<span class="glyphicon glyphicon-comment"></span>
-			<span id="viewed">@Model.Comments.Count</span>
+			<span class="viewed">@Model.Comments.Count</span>
 		</span>
 	</div>
 	<div class="pull-right">
-		<div class="article-title">
+		<div class="aw-title">
 			<strong>
 				@Model.Title
 			</strong>
 		</div>
 	</div>
 </div>
-<div class="row article-body-container">
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
-	@Model.Description
+<div class="row body-container">
 	@Model.Description
 </div>
-<div class="row article-footer-container">
+<div class="row footer-container">
 	<div class="container pull-right">
-		<button class="btn btn-primary pull-right">
+		@using (Ajax.BeginForm( "CommentsOpen", new { id = Model.Id }, ajaxOptionsComments ))
+		{
+			<button type="submit" class="btn btn-primary pull-right">
 				<span class="glyphicon glyphicon-comment"></span>
-				<span id="viewed">@Model.Likes.Count</span>
-		</button>
-		<button class="btn btn-primary pull-right">
-			<span class="glyphicon glyphicon-thumbs-up"></span>
-			<span id="viewed">@Model.Comments.Count</span>
-		</button>
+				<span class="viewed">@Model.Comments.Count()</span>
+			</button>
+		}
+		@using (Ajax.BeginForm( "AddLike", new { id = Model.Id }, ajaxOptionsLikes ))
+		{
+			<button class="btn btn-primary pull-right" id="button-likes">
+				<span class="glyphicon glyphicon-thumbs-up"></span>
+				<span class="viewed" id="like-count">@Model.Likes.Count</span>
+			</button>
+		}
 	</div>
+</div>
+<div id="comments">
 </div>
 

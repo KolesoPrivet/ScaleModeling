@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ScaleModeling.Domain.Entities.ArticleComment>
+
+
+@if (Model.Count() > 0)
+{
+	@*<div class="row article-textarea-container">
+		<div class="col-md-2 pull-left">
+			<div class="pull-left">
+
+			</div>
+		</div>
+		@using (Ajax.BeginForm( "AddLike", new { id = Model.Id }, ajaxOptionsComment ))
+		{
+			<div class="col-md-10 pull-left">
+				@Html.TextArea( "Comments" )
+			</div>
+			<button type="submit" class="btn btn-primary pull-right">
+				Добавить комментарий
+			</button>
+		}
+	</div>
+	<div class="row article-comments-container well">
+		<div class="col-md-3 pull-left">
+			<div class="pull-left">
+				<img src="/Content/Images/avatar.jpg" class="clickable-content img-circle sm-avatar-image pull-left" data-href="#">
+				
+			</div>
+		</div>
+	</div>*@
+	foreach (var comment in Model)
+	{
+		<div class="row article-comments-container well">
+			<div class="col-md-3 pull-left">
+				<div class="pull-left">
+					<img src="/Content/Images/avatar.jpg" class="clickable-content img-circle sm-avatar-image pull-left" data-href="#">
+					<div class="container pull-left commentator-info">
+						<span class="label label-author">
+							<span class="glyphicon glyphicon-user"></span>
+							<span class="viewed">@comment.Author.UserName</span>
+						</span>
+						<span class="label label-viewed">
+							<span class="glyphicon glyphicon-star"></span>
+							<span class="viewed">@comment.Author.UserDetail.Rating</span>
+						</span>
+						<span class="label label-works-and-articles">
+							<span class="glyphicon glyphicon-wrench"></span>
+							<span class="viewed">@comment.Author.Works.Count()</span>
+						</span>
+						<span class="label label-works-and-articles">
+							<span class="glyphicon glyphicon-list-alt"></span>
+							<span class="viewed">@comment.Author.Articles.Count()</span>
+						</span>
+						<span class="label label-date-comment">
+							<span class="glyphicon glyphicon-time"></span>
+							<span class="viewed">@comment.CreationDate</span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9 pull-left">
+				@comment.Text
+			</div>
+		</div>
+	}
+}
