@@ -1,0 +1,39 @@
+﻿@using ScaleModeling.WebUI.Models
+@model CommenterInfoViewModel
+
+<div class="container pull-left full-commentator-info">
+	<div class="pull-left">
+		<img src="/Content/Images/avatar.jpg" class="clickable-content img-circle sm-avatar-image pull-left" data-href="#">
+
+		<div class="commentator-info">
+			<span class="label label-author">
+				<span class="glyphicon glyphicon-user"></span>
+				<span class="viewed">@Model.UserName</span>
+			</span>
+			<span class="label label-viewed">
+				<span class="glyphicon glyphicon-star"></span>
+				<span class="viewed">@Model.Rating</span>
+			</span>
+			<span class="label label-works-and-articles">
+				<span class="glyphicon glyphicon-wrench"></span>
+				<span class="viewed">@Model.WorksCount</span>
+			</span>
+			<span class="label label-works-and-articles">
+				<span class="glyphicon glyphicon-list-alt"></span>
+				<span class="viewed">@Model.ArticleCount</span>
+			</span>
+		</div>
+	</div>
+</div>
+
+<div class="pull-left textarea">
+	@using (Html.BeginForm( "CreateComment", "Article", new { id = Model.CommentedEntityId }, FormMethod.Post, new { @class = "form-group" } ))
+	{
+		<div class="pull-left textarea">
+			@Html.TextArea( "CommentText", "Текст комментария...", new { @class = "form-control" } )
+		</div>
+		<div class="pull-left">
+			<button class="btn btn-primary" type="submit">Отправить</button>
+		</div>
+	}
+</div>

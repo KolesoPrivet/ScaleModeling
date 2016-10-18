@@ -85,23 +85,23 @@
 						<div class="pull-left">
 							<span class="label label-date">
 								<span class="glyphicon glyphicon-time"></span>
-								<span id="viewed">@article.CreationDate.ToString().Substring( 0, 10 )</span>
+								<span class="viewed">@article.CreationDate.ToString().Substring( 0, 10 )</span>
 							</span>
 							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-eye-open"></span>
-								<span id="viewed">@article.Viewed</span>
+								<span class="viewed">@article.Viewed</span>
 							</span>
 							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-thumbs-up"></span>
-								<span id="viewed">@article.Likes.Count</span>
+								<span class="viewed">@article.Likes.Count</span>
 							</span>
 							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-comment"></span>
-								<span id="viewed">@article.Comments.Count</span>
+								<span class="viewed">@article.Comments.Count</span>
 							</span>
 							<span class="label label-author">
 								<span class="glyphicon glyphicon-user"></span>
-								<span id="viewed">@article.Author.UserName</span>
+								<span class="viewed">@article.Author.UserName</span>
 							</span>
 						</div>
 					</div>
@@ -129,19 +129,19 @@
 						<div class="pull-left">
 							<span class="label label-date">
 								<span class="glyphicon glyphicon-time"></span>
-								<span id="viewed">@topic.CreationDate.ToString().Substring( 0, 10 )</span>
+								<span class="viewed">@topic.CreationDate.ToString().Substring( 0, 10 )</span>
 							</span>
 							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-eye-open"></span>
-								<span id="viewed">@topic.Viewed</span>
+								<span class="viewed">@topic.Viewed</span>
 							</span>
 							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-comment"></span>
-								<span id="viewed">@topic.Comments.Count</span>
+								<span class="viewed">@topic.Comments.Count</span>
 							</span>
 							<span class="label label-author">
 								<span class="glyphicon glyphicon-user"></span>
-								<span id="viewed">@topic.Author.UserName</span>
+								<span class="viewed">@topic.Author.UserName</span>
 							</span>
 						</div>
 					</div>
@@ -178,23 +178,23 @@
 							<div class="container text-center">
 								<span class="label label-date">
 									<span class="glyphicon glyphicon-time"></span>
-									<span id="viewed">@work.CreationDate.ToString().Substring( 0, 10 )</span>
+									<span class="viewed">@work.CreationDate.ToString().Substring( 0, 10 )</span>
 								</span>
 								<span class="label label-author">
 									<span class="glyphicon glyphicon-user"></span>
-									<span id="viewed">@work.Author.UserName</span>
+									<span class="viewed">@work.Author.UserName</span>
 								</span>
 								<span class="label label-viewed">
 									<span class="glyphicon glyphicon-eye-open"></span>
-									<span id="viewed">@work.Viewed</span>
+									<span class="viewed">@work.Viewed</span>
 								</span>
 								<span class="label label-viewed">
 									<span class="glyphicon glyphicon-thumbs-up"></span>
-									<span id="viewed">@work.Likes.Count</span>
+									<span class="viewed">@work.Likes.Count</span>
 								</span>
 								<span class="label label-viewed">
 									<span class="glyphicon glyphicon-comment"></span>
-									<span id="viewed">@work.Comments.Count</span>
+									<span class="viewed">@work.Comments.Count</span>
 								</span>
 							</div>
 						</div>
@@ -229,21 +229,21 @@
 							}
 							<div class="container text-center">
 								<span class="label label-price">
-									<span id="viewed">@product.Price Р.</span>
+									<span class="viewed">@product.Price Р.</span>
 								</span>
 								<span class="label label-viewed">
 									<span class="glyphicon glyphicon-star"></span>
-									<span id="viewed">@product.ProductComments.Sum(pc => pc.Rating).ToString()</span>
+									<span class="viewed">@product.ProductComments.Sum(pc => pc.Rating).ToString()</span>
 								</span>
 								<span class="label label-viewed">
 									<span class="glyphicon glyphicon-comment"></span>
-									<span id="viewed">@product.ProductComments.Count</span>
+									<span class="viewed">@product.ProductComments.Count</span>
 								</span>
 							</div>
 							<div class="row">
 								<button class="col-md-12 btn btn-primary">
 									<span class="glyphicon glyphicon-shopping-cart"></span>
-									<span id="viewed">В КОРЗИНУ</span>
+									<span class="viewed">В КОРЗИНУ</span>
 								</button>
 							</div>
 						</div>
@@ -274,19 +274,19 @@
 						<div class="pull-left">
 							<span class="label label-date">
 								<span class="glyphicon glyphicon-time"></span>
-								<span id="viewed">@ev.CreationDate.ToString().Substring( 0, 10 )</span>
+								<span class="viewed">@ev.CreationDate.ToString().Substring( 0, 10 )</span>
 							</span>
 							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-eye-open"></span>
-								<span id="viewed">@ev.Viewed</span>
+								<span class="viewed">@ev.Viewed</span>
 							</span>
 							<span class="label label-viewed">
 								<span class="glyphicon glyphicon-comment"></span>
-								<span id="viewed">@ev.Comments.Count</span>
+								<span class="viewed">@ev.Comments.Count</span>
 							</span>
 							<span class="label label-author">
 								<span class="glyphicon glyphicon-user"></span>
-								<span id="viewed">@ev.Author.UserName</span>
+								<span class="viewed">@ev.Author.UserName</span>
 							</span>
 						</div>
 					</div>

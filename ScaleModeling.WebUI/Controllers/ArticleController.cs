@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 
 using ScaleModeling.Domain.Abstract;
 using ScaleModeling.Domain.Entities;
-
+using ScaleModeling.WebUI.Models;
 
 namespace ScaleModeling.WebUI.Controllers
 {
@@ -73,21 +74,42 @@ namespace ScaleModeling.WebUI.Controllers
             }
 
 
-            List<ArticleComment> articleComments = articleCommentsRepository.GetAll.Where(ac => ac.ArticleId == id).ToList();
+            List<ArticleComment> articleComments = articleCommentsRepository.GetAll.Where( ac => ac.ArticleId == id ).ToList();
 
 
             return PartialView( articleComments );
         }
 
-        //public PartialViewResult CreateComment(int id = 0)
-        //{
-        //    if(id == 0)
-        //    {
-        //        throw new Exception( "Article id = 0, article is undefined!" );
-        //    }
+        public PartialViewResult CommentField(int id = 0)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                User currentUser = UserManager.FindById( User.Identity.GetUserId<int>() );
 
-            
-        //}
+                return PartialView( new CommenterInfoViewModel { UserName = User.Identity.Name,
+                                                                 CommentedEntityId = id,
+                                                                 Rating = currentUser.UserDetail.Rating,
+                                                                 ArticleCount = currentUser.Articles.Count,
+                                                                 WorksCount = currentUser.Works.Count, } );
+            }
+
+            return PartialView( "NotAuthenticated" );
+        }
+
+
+
+        [HttpPost]
+        public async Task<ViewResult> CreateComment(CommentViewModel comment, int id)
+        {
+            await articleCommentsRepository.Create( new ArticleComment { ArticleId = id, AuthorId = User.Identity.GetUserId<int>(), CreationDate = DateTime.Now, Text = comment.CommentText } );
+
+            await articleCommentsRepository.SaveChangesAsync();
+
+            return View( "GetConcreteArticle", articleRepository.GetAll.Where( a => a.Id == id ).AsEnumerable().First() );
+        }
+
+
+
 
         public async Task<int> AddLike(int id = 0)
         {
@@ -97,41 +119,30 @@ namespace ScaleModeling.WebUI.Controllers
             }
 
 
-            Article currentArticle = await articleRepository.GetEntityById(id);
+            Article currentArticle = await articleRepository.GetEntityById( id );
 
-            User userLiked = await UserManager.FindByNameAsync( User.Identity.Name );
+            int userLikedId = User.Identity.GetUserId<int>();
 
-            ArticleLiked currentLike = new ArticleLiked { ArticleId = currentArticle.Id, UserId = userLiked.Id, LikedDate = DateTime.Now };
-
-
-            if (currentArticle.Likes.Any(a => a.ArticleId == currentLike.ArticleId && a.UserId == currentLike.UserId))
+            if (userLikedId != default( int ))
             {
-                currentArticle.Likes.RemoveAll( a => a.ArticleId == currentLike.ArticleId && a.UserId == currentLike.UserId );
-                await articleRepository.SaveChangesAsync();
-            }
+                ArticleLiked currentLike = new ArticleLiked { ArticleId = currentArticle.Id, UserId = userLikedId, LikedDate = DateTime.Now };
 
-            else
-            {
-                currentArticle.Likes.Add( currentLike );
-                await articleRepository.SaveChangesAsync();
-            }
 
+                if (currentArticle.Likes.Any( a => a.ArticleId == currentLike.ArticleId && a.UserId == currentLike.UserId ))
+                {
+                    currentArticle.Likes.RemoveAll( a => a.ArticleId == currentLike.ArticleId && a.UserId == currentLike.UserId );
+                    await articleRepository.SaveChangesAsync();
+                }
+
+                else
+                {
+                    currentArticle.Likes.Add( currentLike );
+                    await articleRepository.SaveChangesAsync();
+                }
+
+            }
 
             return currentArticle.Likes.Count();
         }
-
-        //public async Task<int> AddComment(int id = 0)
-        //{
-        //    if (id == 0)
-        //    {
-        //        throw new Exception( "Article id = 0, article is undefined!" );
-        //    }
-
-        //    Article currentArticle = articleRepository.Get.Where( a => a.Id == id ).AsEnumerable().First();
-
-        //    User userCommented = await UserManager.FindByNameAsync( User.Identity.Name );
-
-        //    ArticleComment currentComment = new ArticleComment { ArticleId = currentArticle.Id, AuthorId = userCommented.Id, CreationDate = DateTime.Now, Text}
-        //}
     }
 }

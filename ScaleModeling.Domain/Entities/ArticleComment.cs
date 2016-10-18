@@ -1,15 +1,15 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 using ScaleModeling.Domain.Abstract;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ScaleModeling.Domain.Entities
 {
     public class ArticleComment : IEntity
     {
+        [DatabaseGenerated( DatabaseGeneratedOption.Identity )]
         public int Id { get; set; }
 
-        [Required( ErrorMessage = "Необходимо ввести текст комментария" )]
         public string Text { get; set; }
 
         public DateTime CreationDate { get; set; }
